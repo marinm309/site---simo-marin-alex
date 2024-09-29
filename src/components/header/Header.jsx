@@ -1,14 +1,19 @@
 function Header(){
     return(
-        <header>
-            <div className="logo"><img src="/logo-placeholder.jpg" className='image' /></div>
-            <ul>
-                <li>TEMP</li>
-                <li>TEMP</li>
-                <li>ВХОД</li>
-                <li>РЕГИСТРАЦИЯ</li>
+        <nav>
+
+            <div className="logo-container"><a><img src="logo.png" /></a></div>
+
+            <ul className="nav-items-container">
+                <li><a>Home</a></li>
+                <li><a>Home</a></li>
+                <li><a>Home</a></li>
+                <li><a>Home</a></li>
+                <li><a>Home</a></li>
+                <li><button><b>Join</b></button></li>
             </ul>
-        </header>
+            
+        </nav>
     )
 }
 
