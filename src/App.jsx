@@ -4,6 +4,7 @@ import HomePage from './components/home/HomePage.jsx'
 import Header from './components/header/Header.jsx'
 import PrivacyPolicyPage from './components/privacy/PrivacyPolicyPage.jsx'
 import TermsOfServicePage from './components/terms/TermsOfServicePage.jsx'
+import CategoryPage from './components/category/CategoryPage.jsx'
 
 function App() {
 
@@ -14,7 +15,8 @@ function App() {
 					<Route path="/" element={<HomePage />} />
 					<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 					<Route path="/terms-of-service" element={<TermsOfServicePage />} />
-				</Routes>
+          <Route path="/some-category" element={<CategoryPage />} />
+			</Routes>
     </>
   )
 }
