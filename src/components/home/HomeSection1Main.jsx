@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom"
+import Item from "../item/Item"
+import Category from "../category/Category"
 
 function HomeSection1Main(){
     return(
         <section className="home-section1main">
 
-            <div className="home-section1main-container">
+            <div className="home-section1main-top">
 
                 <div className="home-section1main-inputs">
 
@@ -50,70 +52,40 @@ function HomeSection1Main(){
 
                     <ul>
 
-                        <li>
-                            <Link>
-                                <img src="" />
-                                <p>категория<br/>категория</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link>
-                                <img src="" />
-                                <p>категория<br/>категория</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link>
-                                <img src="" />
-                                <p>категория<br/>категория</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link>
-                                <img src="" />
-                                <p>категория<br/>категория</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link>
-                                <img src="" />
-                                <p>категория<br/>категория</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link>
-                                <img src="" />
-                                <p>категория<br/>категория</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link>
-                                <img src="" />
-                                <p>категория<br/>категория</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link>
-                                <img src="" />
-                                <p>категория<br/>категория</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link>
-                                <img src="" />
-                                <p>категория<br/>категория</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link>
-                                <img src="" />
-                                <p>категория<br/>категория</p>
-                            </Link>
-                        </li>
+                        <Category></Category>
+                        <Category></Category>
+                        <Category></Category>
+                        <Category></Category>
+                        <Category></Category>
+                        <Category></Category>
+                        <Category></Category>
+                        <Category></Category>
+                        <Category></Category>
+                        <Category></Category>
 
                     </ul>
 
                 </div>
+
+            </div>
+
+            <div className="home-section1main-bottom">
+
+                <p className="home-section1main-bottom-header">Топ <span className="home-section1-light">Обяви</span></p>
+
+                <ul>
+
+                    <Item></Item>
+                    <Item></Item>
+                    <Item></Item>
+                    <Item></Item>
+                    <Item></Item>
+                    <Item></Item>
+                    <Item></Item>
+                    <Item></Item>
+                    <Item></Item>
+
+                </ul>
 
             </div>
 

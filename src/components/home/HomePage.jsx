@@ -8,6 +8,7 @@ function HomePage(){
         <main>
             
             <HomeSection1Main />
+            {/* <HomeSection1 /> */}
             <HomeSection2 />
             <HomeSection3 />
 
