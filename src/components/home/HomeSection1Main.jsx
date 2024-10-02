@@ -11,7 +11,7 @@ function HomeSection1Main(){
                 <Search />
 
                 <div className="home-section1main-categories">
-                    <h2 className="home-section1main-categories-header"><span className="home-section1main-whitetext">Главни</span> <span className="home-section1-light">категории</span></h2>
+                    <h2 className="home-section1main-categories-header"><span className="home-section1main-whitetext">Главни</span> <span className="light-text">категории</span></h2>
                     <ul>
                         <Category></Category>
                         <Category></Category>
@@ -28,7 +28,7 @@ function HomeSection1Main(){
                 </div>
             </div>
             <div className="home-section1main-bottom">
-                <p className="home-section1main-bottom-header">Топ <span className="home-section1-light">Обяви</span></p>
+                <p className="home-section1main-bottom-header">Топ <span className="light-text">Обяви</span></p>
                 <ul>
                     <Item></Item>
                     <Item></Item>

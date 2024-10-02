@@ -26,7 +26,7 @@ function Search(){
                     <option>5</option>
                 </select>
                 <button className="dropdown-button">
-                    <i class="fa-solid fa-location-dot"></i>
+                    <i className="fa-solid fa-location-dot"></i>
                 </button>
             </div>
         </div>
