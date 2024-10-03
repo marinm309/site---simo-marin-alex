@@ -547,7 +547,7 @@ p.single-item-description{
   gap: 10px;
 }
 
-.login-container {
+.login-register-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -568,7 +568,7 @@ p.single-item-description{
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.login-box {
+.login-register-box {
   position: relative;
   display: flex;
   background-color: #F2F2F2;
@@ -581,14 +581,14 @@ p.single-item-description{
   box-sizing: border-box;
 }
 
-.login-box-left {
+.login-register-box-left {
   width: 50%;
   padding: 30px 70px;
   background-color: #D94A4A;
   box-sizing: border-box;
 }
 
-.login-box-left ul{
+.login-register-box-left ul{
   display: flex;
   align-items: start;
   justify-content: center;
@@ -596,7 +596,7 @@ p.single-item-description{
   gap: 20px;
 }
 
-.login-box-left li{
+.login-register-box-left li{
   font-size: 20px;
   color: white;
   display: flex;
@@ -605,20 +605,20 @@ p.single-item-description{
   gap: 20px;
 }
 
-.login-box i{
+.login-register-box i{
   color: #8c281f;
 }
 
-.login-box-left li i{
+.login-register-box-left li i{
   font-size: 24px;
 }
 
-.login-back-btn i{
+.login-register-back-btn i{
   font-size: 16px;
   margin-right: 5px;
 }
 
-.login-box-right {
+.login-register-box-right {
   width: 50%;
   padding: 20px;
   display: flex;
@@ -626,20 +626,20 @@ p.single-item-description{
   justify-content: space-between;
 }
 
-.login-box-right form {
+.login-register-box-right form {
   display: flex;
   flex-direction: column;
   width: 80%;
   margin: 0 auto;
 }
 
-.login-box-right label {
+.login-register-box-right label {
   font-size: 20px;
   color: #8C281F;
   margin-bottom: 5px;
 }
 
-.login-box-right input {
+.login-register-box-right input {
   padding: 10px;
   border: 1px solid #8C281F;
   border-radius: 10px;
@@ -647,16 +647,16 @@ p.single-item-description{
   font-size: 16px;
 }
 
-.login-box-right input:focus{
+.login-register-box-right input:focus{
   outline: 1px solid #521711;
 }
 
-.login-box-right input::placeholder{
+.login-register-box-right input::placeholder{
   color: #D94A4A;
   opacity: 0.5;
 }
 
-.login-box-right .login-back-btn {
+.login-register-box-right .login-register-back-btn {
   font-size: 14px;
   color: black;
   border: none;
@@ -666,7 +666,7 @@ p.single-item-description{
   justify-content: start;
 }
 
-.login-box-right .login-submit-btn {
+.login-register-box-right .login-register-submit-btn {
   background-color: black;
   border: none;
   border-radius: 10px;
@@ -677,16 +677,20 @@ p.single-item-description{
   margin-top: 35px;
 }
 
-.login-box-right .login-bottom-text {
+.login-register-box-right .login-register-bottom-text {
   font-size: 12px;
   text-align: center;
   width: 200px;
   margin: 0 auto;
 }
 
-.login-box-left-header{
+.login-register-box-left-header{
   font-size: 40px;
   font-weight: 400;
   text-align: center;
   color: white;
+}
+
+.register-box{
+  height: 600px;
 }
