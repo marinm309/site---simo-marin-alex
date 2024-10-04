@@ -5,6 +5,7 @@ import Header from './components/header/Header.jsx'
 import PrivacyPolicyPage from './components/privacy/PrivacyPolicyPage.jsx'
 import TermsOfServicePage from './components/terms/TermsOfServicePage.jsx'
 import CategoryPage from './components/category/CategoryPage.jsx'
+import ProfilePage from './components/profile/ProfilePage.jsx'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
 					<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 					<Route path="/terms-of-service" element={<TermsOfServicePage />} />
           <Route path="/some-category" element={<CategoryPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
 			</Routes>
     </>
   )

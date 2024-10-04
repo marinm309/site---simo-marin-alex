@@ -4,7 +4,7 @@ function Category(){
     return(
         <li>
             <Link to={'some-category'}>
-                <img src="" />
+                <img src="product.jpg" />
                 <p>категория<br/>категория</p>
             </Link>
         </li>
