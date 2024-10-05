@@ -780,49 +780,40 @@ p.single-item-description{
   position: relative;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .profile-container {
   display: flex;
   align-items: center;
   gap: 50px;
-  background-color: white;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
 }
 
 .profile-card {
-  background-color: #e74c3c;
+  background-color: #D94A4A;
   padding: 30px;
   border-radius: 10px;
   color: white;
   text-align: center;
-  width: 250px;
+  width: 520px;
+  height: auto;
   position: relative;
 }
 
+.profle-card-inner-container hr{
+  margin: 20px 0;
+}
+
 .profile-image {
-  width: 100px;
-  height: 100px;
-  background-color: #b03a2e;
+  width: 150px;
+  height: 150px;
+  background-color: #8C281F;
   border-radius: 50%;
   margin: 0 auto 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-top: 30px;
 }
 
 .file-upload {
@@ -830,61 +821,81 @@ p.single-item-description{
 }
 
 .upload-btn {
-  width: 50px;
-  height: 50px;
-  background-color: white;
   border: none;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 24px;
-  color: #b03a2e;
   cursor: pointer;
   position: absolute;
-  top: 25px;
+  top: 0px;
   z-index: 10;
+  width: 150px;
+  height: 150px;
 }
 
 .upload-btn i {
-  color: #b03a2e;
+  color: white;
+  font-size: 40px;
 }
 
 .profile-card h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
+  font-size: 32px;
+  margin-bottom: 20px 0;
+  font-weight: 500;
 }
 
 .profile-card p {
-  margin: 5px 0;
-  font-size: 14px;
+  margin: 20px 10px;
+  font-size: 20px;
+  text-align: left;
+}
+
+.profile-card-inner-container p:first-of-type{
+  border-top: 1px solid #F2F2F2;
+  padding-top: 20px;
+}
+
+.profile-card p i{
+  margin-right: 10px;
 }
 
 .profile-card .listings {
   margin-top: 20px;
-  font-weight: bold;
+  font-weight: 300;
+  text-align: right;
+  border-top: 1px solid #F2F2F2;
+  padding-top: 20px;
+  margin-top: 100px;
 }
 
 .review {
   text-align: center;
+  align-self: self-start;
+  margin-left: 50px;
 }
 
 .review h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #b03a2e;
+  margin-top: 0;
+  font-size: 32px;
+  margin-bottom: 50px;
+  color: #8C281F;
+  font-weight: 500;
 }
 
 .stars {
   display: flex;
   gap: 5px;
+  font-size: 32px;
 }
 
 .star {
-  font-size: 24px;
-  color: #e74c3c;
+  font-size: 50px;
+  color: #D94A4A;
 }
 
-.star.empty {
-  color: #f5f5f5;
+.profle-card-inner-container{
+  width: 80%;
+  margin: 0 auto;
 }
