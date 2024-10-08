@@ -1,0 +1,75 @@
+.home-section-login-categories img{
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: white;
+    object-fit: cover;
+  }
+  
+.home-section-login-categories ul{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(77px, calc(20% - 36px)));
+    gap: 36px;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 30%;
+  }
+  
+.home-section-login-categories li{
+    min-width: 77px;
+  }
+  
+.home-section-login-categories ul li a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  
+.home-section-login-categories p{
+    font-size: 15px;
+    margin: 0;
+  }
+  
+.home-section-login-categories-header{
+    font-size: 40px;
+    font-weight: 300;
+    text-align: center;
+    color: white;
+  }
+
+.home-section-login-bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+.home-section-login-bottom ul{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 70%;
+  }
+  
+.home-section-login-bottom-header{
+    font-size: 40px;
+    color: #D94A4A;
+  }
+
+.home-section-login{
+    width: 100%;
+  }
+  
+.home-section-login-top{
+    margin: 0 auto;
+    text-align: center;
+    background-color: #D94A4A;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }

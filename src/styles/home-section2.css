@@ -1,0 +1,44 @@
+.home-section2{
+    margin: 150px auto;
+  }
+  
+.home-section2-dot{
+    color: #8C281F;
+  }
+  
+.home-section2-header{
+    font-size: 48px;
+    margin-bottom: 130px;
+    color: #D94A4A;
+  }
+  
+.home-section2-benefits img{
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+  
+.home-section2-benefits h3{
+    font-weight: 400;
+    font-size: 32px;
+    margin-bottom: auto;
+    margin-top: 30px;
+  }
+  
+.home-section2-benefits p{
+    font-size: 16px;
+  }
+  
+.home-section2-benefits{
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    gap: 60px;
+    color: #8C281F;
+  }
+  
+.home-section2-benefits li{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+  }

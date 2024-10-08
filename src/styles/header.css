@@ -1,0 +1,54 @@
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #999999;
+    background: rgb(234,234,234);
+    background: #f2f2f2;
+    padding: 15px 10%;
+  }
+
+.logo-container img{
+    object-fit: cover;
+    width: 200px;
+    height: 50px;
+  }
+
+.nav-items-container a{
+    color: #D94A4A;
+  }
+
+.nav-items-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 50px;
+    font-size: 22px;
+  }
+
+.profile-btn-container{
+    position: relative;
+  }
+
+.profile-btn{
+    border: none;
+    outline: none;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+.nav-items-container .login-btn{
+    border: none;
+    font-size: 22px;
+    color: #D94A4A;
+  }
+
+.nav-items-container .register-btn{
+    border: 1px solid #8C281F;
+    padding: 6px 20px;
+    color: #D94A4A;
+    font-size: 22px;
+    background-color: transparent;
+  }

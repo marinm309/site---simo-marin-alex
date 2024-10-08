@@ -1,0 +1,86 @@
+.search-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+.search-bar {
+    flex: 3.27;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    border: 1px solid #8C281F;
+  }
+
+.search-button {
+    color: #D94A4A;
+    cursor: pointer;
+    background-color: #F2F2F2;
+    border: none;
+    padding: 9px;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+.search-button i {
+    font-size: 20px;
+    background-color: #F2F2F2;
+  }
+
+.city-dropdown {
+    flex: 1;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    border: 1px solid #8C281F;
+  }
+
+.dropdown-input {
+    height: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 15px;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    appearance: none;
+    background-color: #F2F2F2;
+    color: #8C8C87;
+    border: none;
+  }
+
+.dropdown-button {
+    color: #D94A4A;
+    cursor: pointer;
+    background-color: #F2F2F2;
+    border: none;
+    padding: 9px;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+.dropdown-button i {
+    font-size: 20px;
+    background-color: #F2F2F2;
+  }
+
+.search-input {
+    height: 100%;
+    box-sizing: border-box;
+    outline: none;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #F2F2F2;
+    border: none;
+    color: #8C8C87;
+    font-size: 16px;
+    font-weight: 500;
+  }

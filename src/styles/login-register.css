@@ -1,0 +1,144 @@
+.login-register-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+.shadow-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+.login-register-box {
+    position: relative;
+    display: flex;
+    background-color: #F2F2F2;
+    z-index: 10;
+    overflow: hidden;
+    width: 80%;
+    max-width: 800px;
+    height: 500px;
+    box-sizing: border-box;
+  }
+  
+.login-register-box-left {
+    width: 50%;
+    padding: 30px 70px;
+    background-color: #D94A4A;
+    box-sizing: border-box;
+  }
+  
+.login-register-box-left ul{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+.login-register-box-left li{
+    font-size: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
+  }
+  
+.login-register-box i{
+    color: #8c281f;
+  }
+  
+.login-register-box-left li i{
+    font-size: 24px;
+  }
+  
+.login-register-back-btn i{
+    font-size: 16px;
+    margin-right: 5px;
+  }
+  
+.login-register-box-right {
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+.login-register-box-right form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+.login-register-box-right label {
+    font-size: 20px;
+    color: #8C281F;
+    margin-bottom: 5px;
+  }
+  
+.login-register-box-right input {
+    padding: 10px;
+    border: 1px solid #8C281F;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  
+.login-register-box-right input:focus{
+    outline: 1px solid #521711;
+  }
+  
+.login-register-box-right input::placeholder{
+    color: #D94A4A;
+    opacity: 0.5;
+  }
+  
+.login-register-box-right .login-register-back-btn {
+    font-size: 14px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+  
+.login-register-box-right .login-register-submit-btn {
+    background-color: black;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 120px;
+    margin: 0 auto;
+    margin-top: 35px;
+  }
+  
+.login-register-box-right .login-register-bottom-text {
+    font-size: 12px;
+    text-align: center;
+    width: 200px;
+    margin: 0 auto;
+  }
+  
+.login-register-box-left-header{
+    font-size: 40px;
+    font-weight: 400;
+    text-align: center;
+    color: white;
+  }
+
+.register-box{
+  height: 600px;
+}
