@@ -7,6 +7,7 @@ import '/src/styles/categories.css'
 import '/src/styles/home-section-login.css'
 import '/src/styles/home-section1.css'
 import '/src/styles/home-section2.css'
+import '/src/styles/home-section3.css'
 
 import { Route, Routes, Navigate } from 'react-router-dom'
 
