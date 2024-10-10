@@ -1,0 +1,36 @@
+footer{
+    border-top: 1px solid #8C281F;
+    color: #8C281F;
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 20px 10%;
+}
+
+footer a{
+    color: #8C281F;
+}
+
+.footer-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.footer-logo img{
+    width: 200px;
+}
+
+.footer-logo p{
+    font-size: 15px;
+}
+
+.footer-socials{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    gap: 30px;
+}

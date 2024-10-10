@@ -1,0 +1,73 @@
+.home-section4-title {
+    font-size: 48px;
+    color: #D94A4A;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+  
+.home-section4-item {
+    display: flex !important;
+    justify-content: start;
+    align-items: center;
+    padding: 20px;
+    gap: 80px;
+}
+  
+.home-section4-image img {
+    width: 500px;
+    height: auto;
+}
+  
+.home-section4-text {
+    color: #8C281F;
+    font-size: 32px;
+    align-self: self-start;
+}
+
+.home-section4-text p{
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.home-section4-quote{
+    font-family: "Pacifico", cursive;
+}
+
+.slick-prev, .slick-next {
+    transition: none;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 50%;
+}
+
+.slick-prev{
+    left: -5px;
+}
+
+.slick-next {
+    right: -5px;
+}
+
+.slick-prev::before, .slick-next::before{
+    display: none;
+}
+
+.slick-prev i, .slick-next i{
+    font-size: 26px;
+}
+  
+.slick-prev:hover, .slick-next:hover {
+    background-color: black;
+    color: white;
+}
