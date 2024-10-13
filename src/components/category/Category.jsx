@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 
-function Category(){
+function Category(props){
     return(
         <li>
             <Link to={'some-category'}>
-                <img src="product.jpg" />
-                <p>категория<br/>категория</p>
+                <img src={props.image} />
+                <p>{props.name}</p>
             </Link>
         </li>
     )

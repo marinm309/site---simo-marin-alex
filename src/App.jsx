@@ -24,10 +24,43 @@ import CategoryPage from './components/category/CategoryPage.jsx'
 import ProfilePage from './components/profile/ProfilePage.jsx'
 import Footer from "./components/footer/Footer.jsx";
 
+import { ClientContext, client } from './context/clientContext.js';
+import { useEffect, useState } from 'react';
+
 function App() {
 
+  const [ currentUser, setCurrentUser ] = useState(false)
+	const [ loading, setLoading ] = useState(true)
+	const [ profileInfo, setProfileInfo ] = useState()
+	const [csrfToken, setCsrfToken] = useState('')
+
+  useEffect(() => {
+		client.get("/users/user")
+		.then(function(res) {
+			setProfileInfo(res)
+			setCurrentUser(true)
+			setCsrfToken(res.data.csrf_token)
+			setLoading(false)
+		})
+		.catch(function(error) {
+			setCurrentUser(false)
+			setLoading(false)
+		});
+	  }, [currentUser])
+
+	if(loading){
+		return <div></div>
+	}
+
   return (
-    <>
+    <ClientContext.Provider value={{
+			client: client,
+			currentUser: currentUser,
+			setCurrentUser: setCurrentUser,
+			profileInfo: profileInfo,
+			setProfileInfo: setProfileInfo,
+			csrfToken: csrfToken,
+			}}>
       <Header />
       <Routes>
 					<Route path="/" element={<HomePage />} />
@@ -37,7 +70,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
 			</Routes>
       <Footer />
-    </>
+    </ClientContext.Provider>
   )
 }
 

@@ -1,6 +1,34 @@
 import { Link } from "react-router-dom"
+import { useContext, useState } from "react"
+import { ClientContext } from '../../context/clientContext.js';
 
 function Login(props){
+
+    function onLogin(e){
+        e.preventDefault()
+        client.post('/users/login', credentials)
+        .then(function(res){
+            setCurrentUser(true)
+            props.onLoginClick()
+        })
+        .catch(function(error){
+            setErr(true)
+        })
+    }
+
+    function handleChange(e){
+        setCredentials((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
+    }
+
+    const [ credentials, setCredentials ] = useState({
+        email: '',
+        password: '',
+    })
+
+    const client = useContext(ClientContext).client
+    const setCurrentUser = useContext(ClientContext).setCurrentUser
+    const [ err, setErr ] = useState(false)
+
     return(
         <div className="login-register-container">
             <div className="shadow-bg" onClick={props.onLoginClick}></div>
@@ -28,11 +56,11 @@ function Login(props){
                         <button>Вход</button>
                         <button onClick={props.onRegisterClick}>Регистрация</button>
                     </div>
-                    <form>
+                    <form onSubmit={onLogin}>
                         <label>Имейл</label>
-                        <input type="email" placeholder='emailname@idk.com' autoComplete="email" name="email"></input>
+                        <input type="email" placeholder='emailname@idk.com' autoComplete="email" name="email" value={credentials.email} onChange={handleChange}></input>
                         <label>Парола</label>
-                        <input type="password" placeholder='********' autoComplete="current-password" name="password"></input>
+                        <input type="password" placeholder='********' autoComplete="current-password" name="password" value={credentials.password} onChange={handleChange}></input>
                         <button className="login-register-submit-btn"></button>
                     </form>
                     <div>

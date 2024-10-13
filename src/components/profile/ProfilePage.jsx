@@ -18,11 +18,11 @@ function ProfilePage(){
             <div className="review">
                 <h3>Ревю от други потребители</h3>
                 <div className="stars">
-                    <span className="star empty"><i class="fa-regular fa-star"></i></span>
-                    <span className="star filled"><i class="fa-solid fa-star"></i></span>
-                    <span className="star filled"><i class="fa-solid fa-star"></i></span>
-                    <span className="star filled"><i class="fa-solid fa-star"></i></span>
-                    <span className="star filled"><i class="fa-solid fa-star"></i></span>
+                    <span className="star empty"><i className="fa-regular fa-star"></i></span>
+                    <span className="star filled"><i className="fa-solid fa-star"></i></span>
+                    <span className="star filled"><i className="fa-solid fa-star"></i></span>
+                    <span className="star filled"><i className="fa-solid fa-star"></i></span>
+                    <span className="star filled"><i className="fa-solid fa-star"></i></span>
                 </div>
             </div>
         </div>

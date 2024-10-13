@@ -1,5 +1,7 @@
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom"
+import { ClientContext } from "../../context/clientContext"
+import { useContext } from 'react'
 
 function ProfileDropdown(props){
 
@@ -19,6 +21,21 @@ function ProfileDropdown(props){
         }
     }, [props.onProfileClick])
 
+    function onLogout(e){
+        props.onProfileClick()
+        e.preventDefault()
+        client.post('/users/logout',
+            {withCredentions: true}
+        ).then(function(res){
+            setProfileInfo(null)
+            setCurrentUser((oldState) => {!oldState})
+        })
+    }
+
+    const client = useContext(ClientContext).client
+    const setCurrentUser = useContext(ClientContext).setCurrentUser
+    const setProfileInfo = useContext(ClientContext).setProfileInfo
+
     return(
         <div className="profile-dropdown-container" ref={dropdownRef}>
             <ul>
@@ -27,7 +44,7 @@ function ProfileDropdown(props){
                 <li onClick={props.onProfileClick}><Link>Нещо</Link></li>
                 <li onClick={props.onProfileClick}><Link>Нещо</Link></li>
                 <li onClick={props.onProfileClick}><Link>Нещо</Link></li>
-                <li onClick={props.onProfileClick}><button>Изход</button></li>
+                <li onClick={onLogout}><button>Изход</button></li>
             </ul>
         </div>
     )

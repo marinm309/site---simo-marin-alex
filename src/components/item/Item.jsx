@@ -6,19 +6,15 @@ function Item(){
             <Link>
                 <img src="product.jpg" className="single-item-img" />
 
-                <div className="single-item-profile-price">
-
-                    <div className="single-item-profile-info">
-                        <img src="profile_pic_default.png" className="single-item-profile-img" />
-                        <p>Марин Маринов</p>
-                    </div>
-                    <p>19.99лв</p>
-
+                <div className="single-item-name-price">
+                    <h3>Транспорт бус с Падащ борд , Къртене извозване , диамантени отвори</h3>
+                    
                 </div>
 
-                <h3>Име на обявата</h3>
-                <p>Описание:</p>
-                <p className="single-item-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque recusandae perferendis voluptas voluptatem, repellendus nesciunt a fugit nulla accusamus necessitatibus vitae qui officiis nemo, dolorem quos harum. Impedit, recusandae molestiae?</p>
+                <p><b>19.99лв</b></p>
+                
+                <p>гр. Шумен, улица Кирил и Методий 29</p>
+                <p>3 Септември 2024</p>
             </Link>
         </li>
     )

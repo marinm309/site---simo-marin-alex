@@ -2,7 +2,22 @@ import Item from "../item/Item"
 import Category from "../category/Category"
 import Search from "../search/Search"
 
+import { useContext, useState, useEffect } from "react"
+
+import { ClientContext } from "../../context/clientContext"
+
 function HomeSection1Main(){
+
+    const client = useContext(ClientContext).client
+    const [ categories, setCategories ] = useState([])
+
+    useEffect(() => {
+        client.get('/categories')
+        .then(function(res){
+            setCategories(res.data)
+        })
+    }, [])
+
     return(
         <section className="home-section-login">
             <div className="home-section-login-top">
@@ -12,17 +27,7 @@ function HomeSection1Main(){
                 <div className="home-section-login-categories">
                     {/* <h2 className="home-section-login-categories-header"><span className="home-section-login-whitetext">Главни</span> <span className="light-text">категории</span></h2> */}
                     <ul>
-                        <Category></Category>
-                        <Category></Category>
-                        <Category></Category>
-                        <Category></Category>
-                        <Category></Category>
-                        <Category></Category>
-                        <Category></Category>
-                        <Category></Category>
-                        <Category></Category>
-                        <Category></Category>
-
+                        {categories.map((c) => <Category key={c.id} image={c.image} name={c.name}></Category>)}
                     </ul>
                 </div>
             </div>
