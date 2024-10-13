@@ -10,7 +10,7 @@ function HomeSection1Main(){
                 <Search />
 
                 <div className="home-section-login-categories">
-                    <h2 className="home-section-login-categories-header"><span className="home-section-login-whitetext">Главни</span> <span className="light-text">категории</span></h2>
+                    {/* <h2 className="home-section-login-categories-header"><span className="home-section-login-whitetext">Главни</span> <span className="light-text">категории</span></h2> */}
                     <ul>
                         <Category></Category>
                         <Category></Category>

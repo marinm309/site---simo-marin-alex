@@ -17,6 +17,17 @@ function Login(props){
                     <div>
                         <button className="login-register-back-btn" onClick={props.onLoginClick}><i className="fa-solid fa-arrow-left"></i><p>Назад</p></button>
                     </div>
+                    <div className="login-register-main-method">
+                        <button><img src="facebook.jpg" />Влез чрез Facebook</button>
+                        <button><img src="google.jpg" />Влез чрез Google</button>
+                    </div>
+                    <div className="login-register-method-separator">
+                        <p>или</p>
+                    </div>
+                    <div className="login-register-switch">
+                        <button>Вход</button>
+                        <button onClick={props.onRegisterClick}>Регистрация</button>
+                    </div>
                     <form>
                         <label>Имейл</label>
                         <input type="email" placeholder='emailname@idk.com' autoComplete="email" name="email"></input>

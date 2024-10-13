@@ -11,10 +11,12 @@ function Header(){
     const [ showProfileDropdown, setShowProfileDropdown ] = useState(false)
 
     function onLoginClick(){
+        showRegister ? setShowRegister((prevState) => !prevState) : ''
         setShowLogin((prevState) => !prevState)
     }
 
     function onRegisterClick(){
+        showLogin ? setShowLogin((prevState) => !prevState) : ''
         setShowRegister((prevState) => !prevState)
     }
 
@@ -36,13 +38,13 @@ function Header(){
                         <button className="profile-btn" onClick={onProfileClick}><img src="profile_pic_default.png" id="pfp-img" /></button>
                         {showProfileDropdown && <ProfileDropdown onProfileClick={onProfileClick} showProfileDropdown={showProfileDropdown} />}
                     </li>
-                    <li><button className="login-btn" onClick={onLoginClick}>Вход</button></li>
-                    <li><button className="register-btn" onClick={onRegisterClick}><b>Регистрация</b></button></li>
+                    <li><button className="login-register-btn" onClick={onLoginClick}><i className="fa-solid fa-user"></i> Моят профил</button></li>
+                    <li><button className="new-btn"><b>Добави обява</b></button></li>
                 </ul>
                 
             </nav>
-            {showLogin && <Login onLoginClick={onLoginClick} />}
-            {showRegister && <Register onRegisterClick={onRegisterClick} />}
+            {showLogin && <Login onLoginClick={onLoginClick} onRegisterClick={onRegisterClick} />}
+            {showRegister && <Register onLoginClick={onLoginClick} onRegisterClick={onRegisterClick} />}
         </div>
     )
 }

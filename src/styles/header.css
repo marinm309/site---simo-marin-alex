@@ -23,7 +23,7 @@ nav{
     align-items: center;
     justify-content: space-evenly;
     gap: 50px;
-    font-size: 22px;
+    font-size: 16px;
   }
 
 .profile-btn-container{
@@ -39,16 +39,34 @@ nav{
     border-radius: 50%;
   }
 
-.nav-items-container .login-btn{
+.nav-items-container .login-register-btn{
     border: none;
-    font-size: 22px;
+    font-size: 16px;
     color: #D94A4A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 
-.nav-items-container .register-btn{
-    border: 1px solid #8C281F;
-    padding: 6px 20px;
-    color: #D94A4A;
+.nav-items-container .login-register-btn i{
     font-size: 22px;
-    background-color: transparent;
   }
+
+.nav-items-container .new-btn{
+    border: none;
+    padding: 8px 24px;
+    color: white;
+    font-size: 16px;
+    background-color: transparent;
+    background-color: black;
+    transition-duration: .2s;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+  }
+
+.nav-items-container .new-btn:hover{
+  background-color: white;
+  color: #D94A4A;
+  border: 1px solid #D94A4A;
+}

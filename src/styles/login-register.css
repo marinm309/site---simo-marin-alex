@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    box-sizing: border-box;
   }
   
 .shadow-bg {
@@ -27,7 +28,7 @@
     overflow: hidden;
     width: 80%;
     max-width: 800px;
-    height: 500px;
+    height: 600px;
     box-sizing: border-box;
   }
   
@@ -140,5 +141,59 @@
   }
 
 .register-box{
-  height: 600px;
+  height: 750px;
+}
+
+.login-register-main-method{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.login-register-main-method button{
+  width: 60%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #8C281F;
+  background-color: white;
+  box-sizing: border-box;
+  font-weight: 500;
+}
+
+.login-register-main-method button:hover{
+  outline: 1px solid #521711;
+}
+
+.login-register-main-method img{
+  object-fit: contain;
+  width: 30px;
+  height: 30px;
+}
+
+.login-register-switch{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.login-register-switch button{
+  border: 1px solid #8C281F;
+  padding: 5px 10px;
+  background-color: white;
+  width: 100px;
+}
+
+.login-register-switch button:hover{
+  outline: 1px solid #521711;
+}
+
+.login-register-method-separator p{
+  text-align: center;
+  margin: 0;
 }

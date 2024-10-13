@@ -3,7 +3,7 @@
     top: 70px;
     right: -5px;
     background-color: white;
-    border: 1px solid #8C281F;
+    border: 1px solid rgba(140, 40, 31, 0.5);
     padding: 10px;
     z-index: 100;
     width: 200px;
@@ -19,7 +19,7 @@
     height: 0;
     border-left: 11px solid transparent;
     border-right: 11px solid transparent;
-    border-bottom: 16px solid #8C281F;
+    border-bottom: 16px solid rgba(140, 40, 31, 0.5);
   }
   
 .profile-dropdown-container::after {
@@ -36,7 +36,7 @@
   
 .profile-dropdown-container li {
     padding: 10px;
-    border-bottom: 1px solid #8C281F;
+    border-bottom: 1px solid rgba(140, 40, 31, 0.5);
   }
   
 .profile-dropdown-container li:last-child {
