@@ -1,6 +1,54 @@
 import { Link } from "react-router-dom"
+import { useContext, useState } from "react"
+import { ClientContext } from '../../context/clientContext.js'
 
 function Register(props){
+
+    function onRegister(e){
+        e.preventDefault()
+
+        if(credentials.password != rePassword){
+            setErr(true)
+            setErrMessage("Password doesn't match")
+            return
+        }
+
+        const formData = new FormData();
+        for (let key in credentials) {
+            formData.append(key, credentials[key]);
+        }
+        client.post('/users/register', formData)
+        .then(function(res){
+            setCurrentUser(true)
+            props.onRegisterClick()
+        })
+        .catch(function(error){
+            console.log(error)
+            setErr(true)
+            setErrMessage(error.response.data.error)
+        })
+    }
+
+    function handleChange(e){
+        setCredentials((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
+    }
+
+    function rePasswordChange(e){
+        setRePassword(e.target.value)
+    }
+
+    const [ credentials, setCredentials ] = useState({
+        email: '',
+        name: '',
+        password: '',
+    })
+
+    const client = useContext(ClientContext).client
+    const setCurrentUser = useContext(ClientContext).setCurrentUser
+    const [ rePassword, setRePassword ] = useState('')
+    const [ err, setErr ] = useState(false)
+    const [ errMessage, setErrMessage ] = useState('')
+
     return(
         <div className="login-register-container">
             <div className="shadow-bg" onClick={props.onRegisterClick}></div>
@@ -28,15 +76,15 @@ function Register(props){
                         <button onClick={props.onLoginClick}>Вход</button>
                         <button>Регистрация</button>
                     </div>
-                    <form>
+                    <form onSubmit={onRegister}>
                         <label>Име</label>
-                        <input type="теьт" placeholder='Иван Иванов' autoComplete="name" name="name"></input>
+                        <input type="теьт" placeholder='Иван Иванов' autoComplete="name" name="name" onChange={handleChange} value={credentials.name}></input>
                         <label>Имейл</label>
-                        <input type="email" placeholder='emailname@idk.com' autoComplete="email" name="email"></input>
+                        <input type="email" placeholder='emailname@idk.com' autoComplete="email" name="email" onChange={handleChange} value={credentials.email}></input>
                         <label>Парола</label>
-                        <input type="password" placeholder='********' autoComplete="new-password" name="password"></input>
+                        <input type="password" placeholder='********' autoComplete="new-password" name="password" onChange={handleChange} value={credentials.password}></input>
                         <label>Парола</label>
-                        <input type="password" placeholder='********' autoComplete="new-password" name="confirmPassword"></input>
+                        <input type="password" placeholder='********' autoComplete="new-password" name="confirmPassword" onChange={rePasswordChange} value={rePassword}></input>
                         <button className="login-register-submit-btn"></button>
                     </form>
                     <div>

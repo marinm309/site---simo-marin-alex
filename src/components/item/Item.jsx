@@ -1,20 +1,21 @@
 import { Link } from "react-router-dom"
 
-function Item(){
+function Item(props){
     return(
         <li className="single-item">
             <Link>
-                <img src="product.jpg" className="single-item-img" />
+                <div className="single-item-top">
+                    <img src={props.image} className="single-item-img" />
 
-                <div className="single-item-name-price">
-                    <h3>Транспорт бус с Падащ борд , Къртене извозване , диамантени отвори</h3>
-                    
+                    <div className="single-item-name-price">
+                        <h3>{props.title}</h3>
+                        <p><b>{props.price}лв</b></p>
+                    </div>
                 </div>
-
-                <p><b>19.99лв</b></p>
-                
-                <p>гр. Шумен, улица Кирил и Методий 29</p>
-                <p>3 Септември 2024</p>
+                <div className="single-item-date-address">
+                    <p>{props.address}</p>
+                    <p>{props.last_updated}</p>
+                </div>
             </Link>
         </li>
     )

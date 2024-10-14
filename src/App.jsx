@@ -61,15 +61,15 @@ function App() {
 			setProfileInfo: setProfileInfo,
 			csrfToken: csrfToken,
 			}}>
-      <Header />
-      <Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-					<Route path="/terms-of-service" element={<TermsOfServicePage />} />
-          <Route path="/some-category" element={<CategoryPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-			</Routes>
-      <Footer />
+    	<Header />
+    	<Routes>
+			<Route path="/" element={<HomePage />} />
+			<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+			<Route path="/terms-of-service" element={<TermsOfServicePage />} />
+			<Route path="/profile" element={<ProfilePage />} />
+			<Route path="/:categoryName" element={<CategoryPage />} />
+		</Routes>
+    	<Footer />
     </ClientContext.Provider>
   )
 }

@@ -10,11 +10,20 @@ function HomeSection1Main(){
 
     const client = useContext(ClientContext).client
     const [ categories, setCategories ] = useState([])
+    const [ items, setItems ] = useState([])
 
     useEffect(() => {
         client.get('/categories')
         .then(function(res){
             setCategories(res.data)
+        })
+    }, [])
+
+    useEffect(() => {
+        client.get('/products')
+        .then(function(res){
+            setItems(res.data)
+            console.log('test')
         })
     }, [])
 
@@ -34,15 +43,7 @@ function HomeSection1Main(){
             <div className="home-section-login-bottom">
                 <p className="home-section-login-bottom-header">Топ <span className="light-text">Обяви</span></p>
                 <ul>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
+                    {items.map((i) => <Item key={i.id} title={i.title} price={i.price} image={i.image} address={i.address} last_updated={i.last_updated}></Item>)}
                 </ul>
             </div>
         </section>
