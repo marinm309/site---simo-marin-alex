@@ -70,7 +70,7 @@ function App() {
 			<Route path="/profile" element={<ProfilePage />} />
 			<Route path="/add-item" element={<AddItemPage />} />
 			<Route path="/c/:categoryName" element={<CategoryPage />} />
-			{/* <Route path="/c/:categoryName/:subcategoryName" element={<CategoryPage />} /> */}
+			<Route path="/c/:categoryName/:subcategoryName" element={<CategoryPage />} />
 		</Routes>
     	<Footer />
     </ClientContext.Provider>
