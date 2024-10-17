@@ -14,8 +14,12 @@ class ProductListCreateAPIView(APIView):
         profile = request.query_params.get('profile', None)
         total_results = request.query_params.get('total_results', None)
         search = request.query_params.get('search', None)
+        subcategory = request.query_params.get('subcategory', None)
         if category:
-            products = Product.objects.filter(category__name=category)
+            products = Product.objects.filter(category__slug=category)
+        elif subcategory:
+            pass
+            #products = Product.objects.filter(subcategory__slug=subcategory)
         elif profile:
             products = Product.objects.filter(user__user_id=profile)
         elif total_results:

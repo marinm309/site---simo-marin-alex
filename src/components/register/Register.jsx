@@ -77,14 +77,14 @@ function Register(props){
                         <button>Регистрация</button>
                     </div>
                     <form onSubmit={onRegister}>
-                        <label>Име</label>
-                        <input type="теьт" placeholder='Иван Иванов' autoComplete="name" name="name" onChange={handleChange} value={credentials.name}></input>
-                        <label>Имейл</label>
-                        <input type="email" placeholder='emailname@idk.com' autoComplete="email" name="email" onChange={handleChange} value={credentials.email}></input>
-                        <label>Парола</label>
-                        <input type="password" placeholder='********' autoComplete="new-password" name="password" onChange={handleChange} value={credentials.password}></input>
-                        <label>Парола</label>
-                        <input type="password" placeholder='********' autoComplete="new-password" name="confirmPassword" onChange={rePasswordChange} value={rePassword}></input>
+                        <label htmlFor="name">Име</label>
+                        <input type="теьт" placeholder='Иван Иванов' autoComplete="name" name="name" onChange={handleChange} value={credentials.name} id="name"></input>
+                        <label htmlFor="email">Имейл</label>
+                        <input type="email" placeholder='emailname@idk.com' autoComplete="email" name="email" onChange={handleChange} value={credentials.email} id="email"></input>
+                        <label htmlFor="password">Парола</label>
+                        <input type="password" placeholder='********' autoComplete="new-password" name="password" onChange={handleChange} value={credentials.password} id="password"></input>
+                        <label htmlFor="confirmPassword">Парола</label>
+                        <input type="password" placeholder='********' autoComplete="new-password" name="confirmPassword" onChange={rePasswordChange} value={rePassword} id="confirmPassword"></input>
                         <button className="login-register-submit-btn"></button>
                     </form>
                     <div>

@@ -32,7 +32,7 @@ function Header(){
         <div>
             <nav>
 
-                <div className="logo-container"><Link to={'/'}><img src="logo.png" /></Link></div>
+                <div className="logo-container"><Link to={'/'}><img src="/logo.png" /></Link></div>
 
                 <ul className="nav-items-container">
                     <li><Link to={'/'}>Home</Link></li>
@@ -43,7 +43,7 @@ function Header(){
                         {showProfileDropdown && <ProfileDropdown onProfileClick={onProfileClick} showProfileDropdown={showProfileDropdown} />}
                     </li>
                     <li><button className="login-register-btn" onClick={onLoginClick}><i className="fa-solid fa-user"></i> Моят профил</button></li>
-                    <li><button className="new-btn"><b>Добави обява</b></button></li>
+                    <li><Link to={'/add-item'} className="new-btn"><b>Добави обява</b></Link></li>
                 </ul>
                 
             </nav>

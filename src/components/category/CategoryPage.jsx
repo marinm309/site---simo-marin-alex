@@ -1,7 +1,23 @@
 import Item from "../item/Item"
 import Search from "../search/Search"
+import { useParams } from "react-router-dom"
+import { useState, useContext, useEffect } from "react"
+import { ClientContext } from "../../context/clientContext"
 
 function CategoryPage(){
+
+    const [ items, setItems ] = useState([])
+    const client = useContext(ClientContext).client
+    const filterQuery = useParams()
+    const category = filterQuery.categoryName
+
+    useEffect(() => {
+        client.get(`/products?category=${category}`)
+        .then(function(res){
+            setItems(res.data)
+        })
+    }, [])
+
     return(
         <section className="categories-section">
             <div className="categories-section-top">
@@ -10,8 +26,8 @@ function CategoryPage(){
 
                 <div className="filter-inputs">
                     <div className="categories-single-filter-container">
-                        <label>Категория</label>
-                        <select className="dropdown-input categories-dropdown">
+                        <label htmlFor="category">Категория</label>
+                        <select className="dropdown-input categories-dropdown" name="category" id="category">
                             <option value="" disabled></option>
                             <option>1</option>
                             <option>2</option>
@@ -19,8 +35,8 @@ function CategoryPage(){
                     </div>
 
                     <div className="categories-single-filter-container">
-                        <label>Подкатегория</label>
-                        <select className="dropdown-input categories-dropdown">
+                        <label htmlFor="subcategory">Подкатегория</label>
+                        <select className="dropdown-input categories-dropdown" name="subcategory" id="subcategory">
                             <option value="" disabled></option>
                             <option>1</option>
                             <option>2</option>
@@ -28,8 +44,8 @@ function CategoryPage(){
                     </div>
 
                     <div className="categories-single-filter-container">
-                        <label>Състояние</label>
-                        <select className="dropdown-input categories-dropdown">
+                        <label htmlFor="status">Състояние</label>
+                        <select className="dropdown-input categories-dropdown" name="status" id="status">
                             <option value="" disabled></option>
                             <option>1</option>
                             <option>2</option>
@@ -37,10 +53,10 @@ function CategoryPage(){
                     </div>
 
                     <div className="categories-single-filter-container">
-                        <label>Цена</label>
+                        <label htmlFor="price">Цена</label>
                         <div className="categories-price-container">
-                            <input type="number" className="categories-price"></input>
-                            <input type="number" className="categories-price"></input>
+                            <input type="number" className="categories-price" name="price-low" id="price"></input>
+                            <input type="number" className="categories-price" name="price-high"></input>
                         </div>
                     </div>
                 </div>
@@ -52,21 +68,12 @@ function CategoryPage(){
 
             </div>
             <div className="categories-section-bottom">
+                <h3>Общо резултати: {items.length} обяв{items.length == 1 ? 'а' : 'и'}</h3>
                 <ul className="promo-items">
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
+                    {/* {items.map((i) => <Item key={i.id} title={i.title} price={i.price} image={i.image} address={i.address} last_updated={i.last_updated}></Item>)} */}
                 </ul>
                 <ul>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
-                    <Item></Item>
+                    {items.map((i) => <Item key={i.id} title={i.title} price={i.price} image={i.image} address={i.address} last_updated={i.last_updated}></Item>)}
                 </ul>
             </div>
         </section>

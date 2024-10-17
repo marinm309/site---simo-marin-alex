@@ -23,6 +23,7 @@ import TermsOfServicePage from './components/terms/TermsOfServicePage.jsx'
 import CategoryPage from './components/category/CategoryPage.jsx'
 import ProfilePage from './components/profile/ProfilePage.jsx'
 import Footer from "./components/footer/Footer.jsx";
+import AddItemPage from "./components/item/AddItemPage.jsx";
 
 import { ClientContext, client } from './context/clientContext.js';
 import { useEffect, useState } from 'react';
@@ -67,7 +68,9 @@ function App() {
 			<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 			<Route path="/terms-of-service" element={<TermsOfServicePage />} />
 			<Route path="/profile" element={<ProfilePage />} />
-			<Route path="/:categoryName" element={<CategoryPage />} />
+			<Route path="/add-item" element={<AddItemPage />} />
+			<Route path="/c/:categoryName" element={<CategoryPage />} />
+			{/* <Route path="/c/:categoryName/:subcategoryName" element={<CategoryPage />} /> */}
 		</Routes>
     	<Footer />
     </ClientContext.Provider>

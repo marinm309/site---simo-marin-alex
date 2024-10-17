@@ -57,10 +57,10 @@ function Login(props){
                         <button onClick={props.onRegisterClick}>Регистрация</button>
                     </div>
                     <form onSubmit={onLogin}>
-                        <label>Имейл</label>
-                        <input type="email" placeholder='emailname@idk.com' autoComplete="email" name="email" value={credentials.email} onChange={handleChange}></input>
-                        <label>Парола</label>
-                        <input type="password" placeholder='********' autoComplete="current-password" name="password" value={credentials.password} onChange={handleChange}></input>
+                        <label htmlFor="email">Имейл</label>
+                        <input type="email" placeholder='emailname@idk.com' autoComplete="email" name="email" value={credentials.email} onChange={handleChange} id="email"></input>
+                        <label htmlFor="password">Парола</label>
+                        <input type="password" placeholder='********' autoComplete="current-password" name="password" value={credentials.password} onChange={handleChange} id="password"></input>
                         <button className="login-register-submit-btn"></button>
                     </form>
                     <div>

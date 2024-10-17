@@ -6,6 +6,7 @@ function Search(){
                     type="text"
                     placeholder="Какво търсиш?"
                     className="search-input"
+                    name="search"
                 />
                 <button className="search-button">
                     <i className="fa-solid fa-magnifying-glass"></i>
@@ -15,6 +16,7 @@ function Search(){
 
                 <select
                     className="dropdown-input"
+                    name="city"
                 >
                     <option value="" disabled>
                     Град?

@@ -23,7 +23,6 @@ function HomeSection1Main(){
         client.get('/products')
         .then(function(res){
             setItems(res.data)
-            console.log('test')
         })
     }, [])
 
@@ -36,7 +35,7 @@ function HomeSection1Main(){
                 <div className="home-section-login-categories">
                     {/* <h2 className="home-section-login-categories-header"><span className="home-section-login-whitetext">Главни</span> <span className="light-text">категории</span></h2> */}
                     <ul>
-                        {categories.map((c) => <Category key={c.id} image={c.image} name={c.name}></Category>)}
+                        {categories.map((c) => <Category key={c.id} image={c.image} name={c.name} slug={c.slug}></Category>)}
                     </ul>
                 </div>
             </div>

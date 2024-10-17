@@ -4,7 +4,7 @@ function Footer(){
     return(
         <footer>
             <div className="footer-logo">
-                <img src="logo.png" />
+                <img src="/logo.png" />
                 <p>Huinqkis Bulgarian Ltd. 2024</p>
             </div>
             <div className="footer-socials">
