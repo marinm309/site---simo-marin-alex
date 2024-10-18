@@ -38,12 +38,15 @@ function Header(){
                     <li><Link to={'/'}>Home</Link></li>
                     <li><Link to={'/'}>Home</Link></li>
                     <li><Link to={'/'}>Home</Link></li>
-                    <li className="profile-btn-container">
+                    {/* <li className="profile-btn-container">
                         <button className="profile-btn" onClick={onProfileClick}><img src={profileInfo && profileInfo.data.user.image ? profileInfo.data.user.image : 'profile_pic_default.png'} id="pfp-img" /></button>
                         {showProfileDropdown && <ProfileDropdown onProfileClick={onProfileClick} showProfileDropdown={showProfileDropdown} />}
-                    </li>
-                    <li><button className="login-register-btn" onClick={onLoginClick}><i className="fa-solid fa-user"></i> Моят профил</button></li>
-                    <li><Link to={'/add-item'} className="new-btn"><b>Добави обява</b></Link></li>
+                    </li> */}
+                    <li className="profile-btn-container">
+                        <button id="pfp-btn" className="login-register-btn" onClick={profileInfo ? onProfileClick : onLoginClick}><i className="fa-solid fa-user"></i> Моят профил</button>
+                        {showProfileDropdown && <ProfileDropdown onProfileClick={onProfileClick} showProfileDropdown={showProfileDropdown} />}
+                        </li>
+                    <li><Link to={profileInfo ? '/add-item' : '#'} className="new-btn" onClick={profileInfo ? '' : onLoginClick}><b>Добави обява</b></Link></li>
                 </ul>
                 
             </nav>

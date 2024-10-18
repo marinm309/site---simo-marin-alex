@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ClientContext } from "../../context/clientContext"
 import { useContext } from 'react'
 
@@ -9,7 +9,7 @@ function ProfileDropdown(props){
 
     useEffect(() => {
         function handleClickOutside(e) {
-            if(dropdownRef.current && ((e.target.id == 'pfp-img' && !props.showProfileDropdown) || (e.target.id != 'pfp-img' && !dropdownRef.current.contains(e.target)))){
+            if(dropdownRef.current && ((e.target.id == 'pfp-btn' && !props.showProfileDropdown) || (e.target.id != 'pfp-btn' && !dropdownRef.current.contains(e.target)))){
                 props.onProfileClick()
             }
         }
@@ -29,12 +29,14 @@ function ProfileDropdown(props){
         ).then(function(res){
             setProfileInfo(null)
             setCurrentUser((oldState) => {!oldState})
+            nagivate('#')
         })
     }
 
     const client = useContext(ClientContext).client
     const setCurrentUser = useContext(ClientContext).setCurrentUser
     const setProfileInfo = useContext(ClientContext).setProfileInfo
+    const nagivate = useNavigate()
 
     return(
         <div className="profile-dropdown-container" ref={dropdownRef}>

@@ -38,10 +38,15 @@ function App() {
   useEffect(() => {
 		client.get("/users/user")
 		.then(function(res) {
-			setProfileInfo(res)
-			setCurrentUser(true)
-			setCsrfToken(res.data.csrf_token)
-			setLoading(false)
+			if(res.data.message == 'No user is logged in.'){
+				setCurrentUser(false)
+				setLoading(false)
+			}else{
+				setProfileInfo(res)
+				setCurrentUser(true)
+				setCsrfToken(res.data.csrf_token)
+				setLoading(false)
+			}
 		})
 		.catch(function(error) {
 			setCurrentUser(false)
@@ -67,8 +72,8 @@ function App() {
 			<Route path="/" element={<HomePage />} />
 			<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 			<Route path="/terms-of-service" element={<TermsOfServicePage />} />
-			<Route path="/profile" element={<ProfilePage />} />
-			<Route path="/add-item" element={<AddItemPage />} />
+			<Route path="/profile" element={currentUser ? <ProfilePage /> : <Navigate to={'/'} />} />
+			<Route path="/add-item" element={currentUser ? <AddItemPage /> : <Navigate to={'/'} />} />
 			<Route path="/c/:categoryName" element={<CategoryPage />} />
 			<Route path="/c/:categoryName/:subcategoryName" element={<CategoryPage />} />
 		</Routes>

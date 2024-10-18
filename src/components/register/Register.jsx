@@ -66,8 +66,8 @@ function Register(props){
                         <button className="login-register-back-btn" onClick={props.onRegisterClick}><i className="fa-solid fa-arrow-left"></i><p>Назад</p></button>
                     </div>
                     <div className="login-register-main-method">
-                        <button><img src="facebook.jpg" />Влез чрез Facebook</button>
-                        <button><img src="google.jpg" />Влез чрез Google</button>
+                        <button><img src="/facebook.jpg" />Влез чрез Facebook</button>
+                        <button><img src="/google.jpg" />Влез чрез Google</button>
                     </div>
                     <div className="login-register-method-separator">
                         <p>или</p>

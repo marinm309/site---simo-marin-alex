@@ -53,7 +53,9 @@ class UserLogout(APIView):
 
 
 class UserView(APIView):
-	permission_classes = (permissions.IsAuthenticated,)
+	# permission_classes = (permissions.IsAuthenticated,)
+	#authentication_classes = (SessionAuthentication,)
+	permission_classes = (permissions.AllowAny,)
 	authentication_classes = (SessionAuthentication,)
 	
 	def delete(self, request):
@@ -61,8 +63,12 @@ class UserView(APIView):
 		user.delete()
 		return Response({'message': 'User deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
 	
-	def get(self, request):
+	def get(self, request):	
 		user = request.user
+
+		if not user or not user.is_authenticated:
+			return Response({'message': 'No user is logged in.'}, status=status.HTTP_200_OK)
+		
 		csrf_token = get_token(request)
 		serializer = UserSerializer(user)
 		return Response({'user': serializer.data, 'csrf_token': csrf_token}, status=status.HTTP_200_OK)
