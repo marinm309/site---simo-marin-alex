@@ -26,13 +26,6 @@ function AddItemPage(){
         })
     }
 
-    useEffect(() => {
-        client.get('/categories')
-        .then(function(res){
-            setCategories(res.data)
-        })
-    }, [])
-
     const handleChange = ({ currentTarget: input }) => {
         let newData = { ...data };
         newData[input.name] = input.value;
@@ -56,10 +49,27 @@ function AddItemPage(){
         price: '',
         address: '',
         category: 0,
+        subcategory: 0,
+        phone_number: '',
         user: profileInfo.data.user.user_id,
     })
 
+    useEffect(() => {
+        client.get('/categories')
+        .then(function(res){
+            setCategories(res.data)
+        })
+    }, [])
+
+    useEffect(() => {
+        client.get(`/categories/${data.category}`)
+        .then(function(res){
+            setSubcategories(res.data)
+        })
+    }, [data.category])
+
     const [ categories, setCategories ] = useState([])
+    const [ subcategories, setSubcategories ] = useState([])
 
     return(
         <>
@@ -80,6 +90,11 @@ function AddItemPage(){
                 </div>
 
                 <div className="form-group">
+                    <label name="phone_number">Phone number <span></span></label>
+                    <input name="phone_number" type="number" className="form-controll" required="required" onChange={handleChange} value={data.phone_number} />
+                </div>
+
+                <div className="form-group">
                     <label name="address">Address <span></span></label>
                     <input name="address" className="form-controll" required="required" onChange={handleChange} value={data.address} />
                 </div>
@@ -89,6 +104,14 @@ function AddItemPage(){
                     <select name="category" required="required" onChange={handleChange} value={data.category} className="form-controll" >
                         <option disabled value={0}>Изберете категория</option>
                         {categories.map((o) => <option key={o.id} value={o.id}>{o.name}</option>)}
+                    </select>
+                </div>
+
+                <div className="form-group">
+                    <label name="subcategory">Subategory <span></span></label>
+                    <select name="subcategory" required="required" onChange={handleChange} value={data.subcategory} className="form-controll" >
+                        <option disabled value={0}>Изберете подкатегория</option>
+                        {subcategories.map((o) => <option key={o.id} value={o.id}>{o.name}</option>)}
                     </select>
                 </div>
 

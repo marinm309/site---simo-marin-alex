@@ -4,7 +4,7 @@ function Item(props){
 
     return(
         <li className="single-item">
-            <Link>
+            <Link to={`/i/${props.slug}`}>
                 <div className="single-item-top">
                     <img src={props.image} className="single-item-img" />
 

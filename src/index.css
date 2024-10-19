@@ -35,7 +35,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .section{
-  width: 80%;
+  padding: 0 90px;
   margin: 0 auto;
   margin-bottom: 150px;
 }

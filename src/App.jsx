@@ -13,6 +13,7 @@ import '/src/styles/home-section1.css'
 import '/src/styles/home-section2.css'
 import '/src/styles/home-section3.css'
 import '/src/styles/home-section4.css'
+import '/src/styles/single-item-page.css'
 
 import { Route, Routes, Navigate } from 'react-router-dom'
 
@@ -24,6 +25,7 @@ import CategoryPage from './components/category/CategoryPage.jsx'
 import ProfilePage from './components/profile/ProfilePage.jsx'
 import Footer from "./components/footer/Footer.jsx";
 import AddItemPage from "./components/item/AddItemPage.jsx";
+import SingleItemPage from "./components/item/SingleItemPage.jsx";
 
 import { ClientContext, client } from './context/clientContext.js';
 import { useEffect, useState } from 'react';
@@ -74,6 +76,7 @@ function App() {
 			<Route path="/terms-of-service" element={<TermsOfServicePage />} />
 			<Route path="/profile" element={currentUser ? <ProfilePage /> : <Navigate to={'/'} />} />
 			<Route path="/add-item" element={currentUser ? <AddItemPage /> : <Navigate to={'/'} />} />
+			<Route path="/i/:itemName" element={<SingleItemPage />} />
 			<Route path="/c/:categoryName" element={<CategoryPage />} />
 			<Route path="/c/:categoryName/:subcategoryName" element={<CategoryPage />} />
 		</Routes>
