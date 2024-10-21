@@ -30,7 +30,7 @@ function Header(){
 
     return(
         <div>
-            <nav>
+            <nav className="navigation-container">
 
                 <div className="logo-container"><Link to={'/'}><img src="/logo.png" /></Link></div>
 

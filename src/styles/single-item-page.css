@@ -1,42 +1,34 @@
-.car-gallery {
-    width: 60%;
-    margin: auto;
-  }
-  
-  .full-screen-button, .exit-fullscreen {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin-top: 15px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .main-image {
-    width: 500px;
-    height: 500px;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-  }
-  
-  .slick-thumb {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .slick-thumb img {
-    width: 80px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .slick-thumb img:hover {
-    border: 2px solid #007bff;
-  }
-  
+.dots-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dot {
+  width: 15px;
+  height: 15px;
+  margin: 0 5px;
+  padding: 5px;border: 2px solid #F2F2F2;
+  border-radius: 50%;
+  background-color: #F2F2F2;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition-duration: .3s;
+}
+
+.dot.active {
+  background-color: #D94A4A;
+}
+
+.single-item-gallery-container{
+  position: relative;
+}
+
+.yarl__thumbnails_track{
+  /* transform: none !important; */
+  /* transform: translateX(0);
+  transition-duration: 0s !important; */
+}
