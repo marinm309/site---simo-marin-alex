@@ -33,17 +33,16 @@ function SingleItemPage(){
   }
 
   const dotsUpdateIndex = (clickedIndex) => {
+    dotClickDiff = Math.abs(clickedIndex - index)
     if(clickedIndex > index){
-      dotClickDiff = clickedIndex - index
-      for(let i=0; i<dotClickDiff; i++){
-        lightRef.current.next() 
-      }
+      lightRef.current.next({ count: dotClickDiff }) 
     }else{
-      dotClickDiff = index - clickedIndex
-      for(let i=0; i<dotClickDiff; i++){
-        lightRef.current.prev()
-      }
+      lightRef.current.prev({ count: dotClickDiff })
     }
+  }
+
+  const testFunction = () => {
+    console.log('asdf')
   }
 
   return (
@@ -55,6 +54,7 @@ function SingleItemPage(){
           index={index}
           slides={slides}
           plugins={[Inline]}
+          animation={{ fade: 0, swipe: 500 }}
           on={{
             view: updateIndex,
             click: toggleOpen(true),
@@ -63,6 +63,7 @@ function SingleItemPage(){
             padding: 0,
             spacing: 0,
             imageFit: "contain",
+            preload: slides.length
           }}
           inline={{
             style: {
@@ -75,7 +76,10 @@ function SingleItemPage(){
         />
 
         <Lightbox
-          carousel={{finite: true, preload: 4}}
+          carousel={{
+            finite: true,
+            preload: slides.length
+          }}
           open={open}
           close={toggleOpen(false)}
           index={index}
