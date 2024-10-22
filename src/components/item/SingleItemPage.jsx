@@ -78,7 +78,7 @@ function SingleItemPage() {
   };
 
   return (
-    <div className={`slider-container`}>
+    <div className="slider-container">
 
       <div className="mainslider-container">
         <button onClick={toggleFullscreen} className="mainslider-fullscreen-btn"><i className="fa-solid fa-expand"></i></button>
@@ -99,7 +99,7 @@ function SingleItemPage() {
       </div>
 
       {isFullscreen && (
-        <div className={`thumbnail-slider-contaienr fullscreen`}>
+        <div className="thumbnail-slider-contaienr fullscreen">
           <div className="thumbnail-slider">
             <button onClick={toggleFullscreen} className="thumbnail-fullscreen-btn"><i className="fa-solid fa-x"></i></button>
             <Slider {...thumbSettings} ref={thumbnailSliderRef}>
