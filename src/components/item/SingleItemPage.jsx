@@ -1,108 +1,127 @@
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useState, useRef } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import Inline from "yet-another-react-lightbox/plugins/inline";
 
-
-function SingleItemPage(){
-
-  const lightRef = useRef(null)
-  const slides=[
-    { src: "/image1.jpg" },
-    { src: "/image2.jpg" },
-    { src: "/image3.jpg" },
-    { src: "/image4.jpg" },
-    { src: "/image5.jpg" },
-    
-    { src: "/image1.jpg" },
-    { src: "/image2.jpg" },
-    { src: "/image3.jpg" },
-    { src: "/image4.jpg" },
-    { src: "/image5.jpg" },
-  ]
-  const [open, setOpen] = useState(false)
-  const [index, setIndex] = useState(0)
-  let dotClickDiff = 0
-
-  const toggleOpen = (state) => () => setOpen(state)
-
-  const updateIndex = ({ index: currentIndex }) => {
-    setIndex(currentIndex)
-  }
-
-  const dotsUpdateIndex = (clickedIndex) => {
-    dotClickDiff = Math.abs(clickedIndex - index)
-    if(clickedIndex > index){
-      lightRef.current.next({ count: dotClickDiff }) 
-    }else{
-      lightRef.current.prev({ count: dotClickDiff })
-    }
-  }
-
-  const testFunction = () => {
-    console.log('asdf')
-  }
-
+function NextArrow(props) {
   return (
-    <div className="single-item-container">
-      <div className="single-item-gallery-container">
-
-        <Lightbox
-          controller={{ref: lightRef}}
-          index={index}
-          slides={slides}
-          plugins={[Inline]}
-          animation={{ fade: 0, swipe: 500 }}
-          on={{
-            view: updateIndex,
-            click: toggleOpen(true),
-          }}
-          carousel={{
-            padding: 0,
-            spacing: 0,
-            imageFit: "contain",
-            preload: slides.length
-          }}
-          inline={{
-            style: {
-              width: "100%",
-              maxWidth: "750px",
-              aspectRatio: "3 / 2",
-              margin: "0 auto",
-            },
-          }}
-        />
-
-        <Lightbox
-          carousel={{
-            finite: true,
-            preload: slides.length
-          }}
-          open={open}
-          close={toggleOpen(false)}
-          index={index}
-          slides={slides}
-          plugins={[Thumbnails]}
-          on={{ view: updateIndex }}
-          animation={{ fade: 0, swipe: 500 }}
-          controller={{ closeOnPullDown: true, closeOnBackdropClick: true }}
-        />
-
-        <div className="dots-container">
-          {slides.map((_, i) => (
-            <span
-              key={i}
-              className={`dot ${i === index ? "active" : ""}`}
-              onClick={() => {dotsUpdateIndex(i)}}
-            ></span>
-          ))}
-        </div>
-        
-      </div>
+    <div onClick={props.onClick} className="next-arrow arrow">
+      <i className="fa-solid fa-chevron-right"></i>
     </div>
-  )
+  );
 }
 
-export default SingleItemPage
+function PrevArrow(props) {
+  return (
+    <div onClick={props.onClick} className="prev-arrow arrow">
+      <i className="fa-solid fa-chevron-left"></i>
+    </div>
+  );
+}
+
+function SingleItemPage() {
+  const [index, setIndex] = useState(0)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+  const sliderRef = useRef(null)
+  const thumbnailSliderRef = useRef(null)
+
+
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen)
+  }
+
+  const mainSettings = {
+    dots: true,
+    lazyLoad: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    waitForAnimate: false,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    appendDots: dots => (
+      <div>
+        <ul className="dots-container"> {dots} </ul>
+      </div>
+    ),
+    customPaging: i => (
+      <div className={`dot ${index === i ? 'active' : ''}`}></div>
+    ),
+    beforeChange: (oldIndex, newIndex) => {
+      setIndex(newIndex)
+    }
+  };
+
+  const thumbSettings = {
+    customPaging: function(i) {
+      return (
+        <a>
+          <img src={`/image${i + 1}.jpg`} />
+        </a>
+      );
+    },
+    initialSlide: index,
+    dots: true,
+    dotsClass: "slick-dots slick-thumb",
+    infinite: true,
+    waitForAnimate: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    beforeChange: (oldIndex, newIndex) => {
+      setIndex(newIndex)
+      sliderRef.current?.slickGoTo(newIndex)
+    }
+  };
+
+  return (
+    <div className={`slider-container`}>
+
+      <div className="mainslider-container">
+        <button onClick={toggleFullscreen} className="mainslider-fullscreen-btn"><i className="fa-solid fa-expand"></i></button>
+        <Slider {...mainSettings} ref={sliderRef}>
+          <div>
+            <img src={"/image1.jpg"} alt="Slide 1" />
+          </div>
+          <div>
+            <img src={"/image2.jpg"} alt="Slide 2" />
+          </div>
+          <div>
+            <img src={"/image3.jpg"} alt="Slide 3" />
+          </div>
+          <div>
+            <img src={"/image4.jpg"} alt="Slide 4" />
+          </div>
+        </Slider>
+      </div>
+
+      {isFullscreen && (
+        <div className={`thumbnail-slider-contaienr fullscreen`}>
+          <div className="thumbnail-slider">
+            <button onClick={toggleFullscreen} className="thumbnail-fullscreen-btn"><i className="fa-solid fa-x"></i></button>
+            <Slider {...thumbSettings} ref={thumbnailSliderRef}>
+              <div>
+                <img src="/image1.jpg" alt="Thumb 1" />
+              </div>
+              <div>
+                <img src="/image2.jpg" alt="Thumb 2" />
+              </div>
+              <div>
+                <img src="/image3.jpg" alt="Thumb 3" />
+              </div>
+              <div>
+                <img src="/image4.jpg" alt="Thumb 4" />
+              </div>
+            </Slider>
+          </div>
+        </div>
+      )}
+
+    </div>
+  );
+}
+
+export default SingleItemPage;

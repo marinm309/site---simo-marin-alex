@@ -1,8 +1,12 @@
+* {
+  outline: none;
+}
+
 .dots-container {
   display: flex;
   justify-content: center;
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -10,8 +14,7 @@
 .dot {
   width: 15px;
   height: 15px;
-  margin: 0 5px;
-  padding: 5px;border: 2px solid #F2F2F2;
+  border: 2px solid #F2F2F2;
   border-radius: 50%;
   background-color: #F2F2F2;
   cursor: pointer;
@@ -23,12 +26,100 @@
   background-color: #D94A4A;
 }
 
-.single-item-gallery-container{
+.mainslider-container{
+  width: 750px;
+  margin: 0 auto;
+}
+
+.slider-container img{
+  width: 100%;
+  object-fit: contain;
+}
+
+.arrow{
+  width: 40px;
+  height: 40px;
+  background-color: #F2F2F2;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  transition-duration: .3s;
+}
+
+.arrow:hover{
+  background-color: #D94A4A;
+  color: white;
+}
+
+.next-arrow{
+  right: 10px;
+}
+
+.prev-arrow{
+  left: 10px;
+}
+
+.slider-container, .mainslider-container, .thumbnail-slider {
   position: relative;
 }
 
-.yarl__thumbnails_track{
-  /* transform: none !important; */
-  /* transform: translateX(0);
-  transition-duration: 0s !important; */
+.fullscreen {
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  padding-top: 100px;
+}
+
+.thumbnail-slider{
+  width: 900px;
+  margin: 0 auto;
+}
+
+.thumbnail-slider .slick-dots{
+  bottom: -150px;
+}
+
+.thumbnail-slider .slick-dots li{
+  width: 130px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.mainslider-fullscreen-btn, .thumbnail-fullscreen-btn{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border: none;
+  z-index: 1;
+  background-color: transparent;
+  font-size: 28px;
+  width: 40px;
+  height: 40px;
+  background-color: #F2F2F2;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-duration: .3s;
+}
+
+.thumbnail-fullscreen-btn{
+  top: 10px;
+}
+
+.mainslider-fullscreen-btn:hover, .thumbnail-fullscreen-btn:hover{
+  color: white;
+  background-color: #D94A4A;
+}
+
+.thumbnail-slider .slick-dots .slick-active img{
+  border: 2px solid #D94A4A;
+  box-sizing: border-box;
 }
