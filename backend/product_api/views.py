@@ -4,6 +4,10 @@ from rest_framework import status, permissions
 from django.shortcuts import get_object_or_404
 from .models import Product, Favorite
 from .serializers import ProductSerializer, FavoriteSerializer
+from django.contrib.auth import get_user_model
+from user_api.serializers import SingleUserSerializer
+
+UserModel = get_user_model()
 
 class ProductListCreateAPIView(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -42,42 +46,51 @@ class ProductRetrieveUpdateDestroyAPIView(APIView):
     permission_classes = (permissions.AllowAny,)
     authentication_classes = ()
     
-    def get(self, request, pk):
-        product = get_object_or_404(Product, pk=pk)
-        serializer = ProductSerializer(product)
-        return Response(serializer.data)
+    def get(self, request, slug):
+        product = get_object_or_404(Product, slug=slug)
+        user = get_object_or_404(UserModel, user_id=product.user.user_id)
+        similar_products = Product.objects.filter(category=product.category).exclude(id=product.id)
 
-    def put(self, request, pk):
-        product = get_object_or_404(Product, pk=pk)
+        product_serializer = ProductSerializer(product)
+        user_serializer = SingleUserSerializer(user)
+        similar_products_serializer = ProductSerializer(similar_products, many=True)
+
+        response_data = product_serializer.data
+        response_data['user'] = user_serializer.data
+        response_data['similarItems'] = similar_products_serializer.data
+        return Response(response_data, status=status.HTTP_200_OK)
+
+    def put(self, request, slug):
+        product = get_object_or_404(Product, slug=slug)
         serializer = ProductSerializer(product, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def patch(self, request, pk):
-        product = get_object_or_404(Product, pk=pk)
+    def patch(self, request, slug):
+        product = get_object_or_404(Product, slug=slug)
         serializer = ProductSerializer(product, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk):
-        product = get_object_or_404(Product, pk=pk)
+    def delete(self, request, slug):
+        product = get_object_or_404(Product, slug=slug)
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class FavoriteAPIView(APIView):
 
 
-    def get(self, request, pk):
-        favorite = get_object_or_404(Favorite, pk=pk)
+    def get(self, request, slug):
+        favorite = get_object_or_404(Favorite, slug=slug)
         serializer = FavoriteSerializer(favorite)
         return Response(serializer.data)
 
-    def post(self, request, pk):
-        product = get_object_or_404(Product, id=pk)
+    def post(self, request, slug):
+        product = get_object_or_404(Product, slug=slug)
         favorite, created = Favorite.objects.get_or_create(user=request.user, product=product)
 
         if not created:
@@ -85,7 +98,7 @@ class FavoriteAPIView(APIView):
 
         return Response({"detail": "You put that in favorite."}, status=status.HTTP_201_CREATED)
 
-    def delete(self, request, pk):
-        product = get_object_or_404(Product, id=pk)
+    def delete(self, request, slug):
+        product = get_object_or_404(Product, slug=slug)
         Favorite.objects.filter(user=request.user, product=product).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

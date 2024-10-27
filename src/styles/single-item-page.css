@@ -26,9 +26,19 @@
   background-color: #D94A4A;
 }
 
+.slider-container{
+  display: flex;
+  height: 500px;
+}
+
 .mainslider-container{
   width: 750px;
-  margin: 0 auto;
+  height: 500px;
+  background-color: white;
+}
+
+.slider-container .mainslider-container img{
+  height: 500px;
 }
 
 .slider-container img{
@@ -70,6 +80,7 @@
 .fullscreen {
   position: fixed;
   top: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.8);
   width: 100vw;
   height: 100vh;
@@ -80,6 +91,21 @@
 .thumbnail-slider{
   width: 900px;
   margin: 0 auto;
+  background-color: white;
+}
+
+.thumbnail-slider .slick-track{
+  height: 601px;
+}
+
+.thumbnail-slider .slick-track div{
+  height: 100%;
+}
+
+.thumbnail-slider .slick-track img{
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
 }
 
 .thumbnail-slider .slick-dots{
@@ -122,4 +148,214 @@
 .thumbnail-slider .slick-dots .slick-active img{
   border: 2px solid #D94A4A;
   box-sizing: border-box;
+}
+
+.single-item-container{
+  width: 100%;
+  padding: 0 90px;
+  box-sizing: border-box;
+}
+
+.single-item-top-links-container p{
+  font-size: 16px;
+}
+
+.single-item-top-links-container a{
+  color: black;
+  transition-duration: .3s;
+}
+
+.single-item-top-links-container a:hover{
+  color: #D94A4A;
+}
+
+.single-item-main-info{
+  background-color: #D94A4A;
+  color: white;
+  box-sizing: border-box;
+  height: 500px;
+  padding: 10px 40px;
+  width: 500px;
+}
+
+.single-item-added{
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.single-item-name{
+  font-size: 32px;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+.single-item-price{
+  font-size: 32px;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.single-item-city{
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.single-item-main-info-profile-image-container img{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.single-item-main-info-profile-name{
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+}
+
+.single-item-main-info-profile-since{
+  font-size: 16px;
+  margin: 2px 0;
+  padding: 0;
+}
+
+.single-item-btn{
+  width: 300px;
+  height: 40px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  display: block;
+  margin-top: 20px;
+}
+
+.single-item-message-btn{
+  background-color: black;
+  color: white;
+}
+
+.single-item-phone-btn{
+  color: #D94A4A;
+  background-color: white;
+}
+
+.single-item-main-info-profile-container{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  margin-bottom: 100px;
+}
+
+.single-item-main-info-profile-total-stars{
+  display: inline;
+}
+
+.single-item-categories-report-container{
+  display: flex;
+  align-items: start;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.single-item-categories-container{
+  color: #8C281F;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 750px;
+}
+
+.single-item-categories-container li{
+  border: 1px solid #8C281F;
+  padding: 5px 10px;
+  margin: 0;
+  font-size: 20px;
+  text-align: center;
+  width: auto;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+
+.single-item-report-btn{
+  font-size: 20px;
+  border: none;
+  color: #D94A4A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+}
+
+.single-item-description-profile-items-container{
+  display: flex;
+  align-items: start;
+  gap: 20px;
+  margin-top: 60px;
+}
+
+.single-item-description-container{
+  width: 750px;
+  color: #8C281F;
+}
+
+.single-item-description-container h3{
+  font-size: 26px;
+  font-weight: 600;
+  margin-top: unset;
+}
+
+.single-item-description-container p{
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.single-item-profile-items-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.single-item-profile-items-container a{
+  color: black;
+  text-decoration: underline;
+  align-self: self-end;
+  margin: 5px 0;
+}
+
+.single-item-profile-items-header, .single-item-similar-items-header{
+  font-size: 40px;
+  font-weight: 400;
+  color: #8C281F;
+  margin: unset;
+}
+
+.single-item-profile-items{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.single-item-profile-items li{
+  width: 230px;
+}
+
+.similar-arrows{
+  background-color: black;
+  color: white;
+}
+
+.similar-arrows:hover{
+  color: black;
 }
