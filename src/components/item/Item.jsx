@@ -15,7 +15,7 @@ function Item(props){
                 </div>
                 <div className="single-item-date-address">
                     <p>{props.address}</p>
-                    <p>{props.last_updated}</p>
+                    <p>{props.last_updated != props.created_at ? 'Обновено' : ''} {props.last_updated}</p>
                 </div>
             </Link>
         </li>

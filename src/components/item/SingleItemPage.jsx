@@ -23,16 +23,16 @@ function PrevArrow(props) {
 }
 
 function SingleItemPage() {
-  const [index, setIndex] = useState(0)
-  const [isFullscreen, setIsFullscreen] = useState(false)
+  const [ index, setIndex ] = useState(0)
+  const [ isFullscreen, setIsFullscreen ] = useState(false)
   const sliderRef = useRef(null)
   const thumbnailSliderRef = useRef(null)
-
   const navigate = useNavigate();
   const client = useContext(ClientContext).client
   const [ productData, setProductData ] = useState({})
   const slug = useParams()
   const profileInfo = useContext(ClientContext).profileInfo
+  const [ showPhone, setShowPhone ] = useState(false)
 
   useEffect(() => {
     client.get(`/products/${slug.itemName}`)
@@ -48,6 +48,10 @@ function SingleItemPage() {
 
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen)
+  }
+
+  function onPhoneClick(){
+    setShowPhone(prev => !prev)
   }
 
   const mainSettings = {
@@ -103,7 +107,7 @@ function SingleItemPage() {
     lazyLoad: true,
     infinite: false,
     speed: 0,
-    slidesToShow: 1,
+    slidesToShow: 5,
     slidesToScroll: 1,
     waitForAnimate: true,
     nextArrow: <NextArrow extraClass={' similar-arrows'} />,
@@ -114,7 +118,7 @@ function SingleItemPage() {
     <div className="single-item-container">
 
       <div className="single-item-top-links-container">
-        <p><Link>Главна страница</Link> / <Link>име на категория</Link> / <Link>подкатегория</Link> / име на обява</p>
+        <p><Link to={'/'}>Главна страница</Link> / <Link to={`/c/${productData.category?.slug}`}>име на категория</Link> / <Link to={productData.subcategory?.slug}>подкатегория</Link> / име на обява</p>
       </div>
 
       <div className="slider-container">
@@ -123,7 +127,7 @@ function SingleItemPage() {
           <button onClick={toggleFullscreen} className="mainslider-fullscreen-btn"><i className="fa-solid fa-expand"></i></button>
           <Slider {...mainSettings} ref={sliderRef}>
             <div>
-              <img src={"/image1.jpg"} alt="Slide 1" />
+              <img src={productData.image} alt="Slide 1" />
             </div>
             <div>
               <img src={"/image2.jpg"} alt="Slide 2" />
@@ -177,7 +181,7 @@ function SingleItemPage() {
             </div>
             <div className="single-item-main-info-profile-info">
               <h3 className="single-item-main-info-profile-name">{productData.user?.name}</h3>
-              <p className="single-item-main-info-profile-since">профил от 2019г</p>
+              <p className="single-item-main-info-profile-since">профил от {productData.user?.created_at}</p>
               <div className="single-item-main-info-profile-stars-container">
                 <i className="fa-regular fa-star"></i>
                 <i className="fa-solid fa-star"></i>
@@ -188,8 +192,10 @@ function SingleItemPage() {
               </div>
             </div>
           </div>
-          <button className="single-item-message-btn single-item-btn">Съобщение</button>
-          <button className="single-item-phone-btn single-item-btn">Обаждане</button>
+          <div className="single-item-btn-container">
+            <button className="single-item-message-btn single-item-btn">Съобщение</button>
+            <button className="single-item-phone-btn single-item-btn" onClick={onPhoneClick}>{showPhone ? productData.phone_number : 'Обаждане'}</button>
+          </div>
         </div>
 
       </div>
@@ -221,28 +227,31 @@ function SingleItemPage() {
       <div className="single-item-description-profile-items-container">
         <div className="single-item-description-container">
           <h3>Описание</h3>
-          <p>йфиодмио фсд фиосдйфсйс оаисфйявй йфсиосдйций асдасиоасд йдийай иасйодиасйодиасйиод йиод йиопасдх уиопх упсдфхуисдфуипасдфхасдфасдфх уасдфх асдфх д  хих йипсдфх х иедфруерфх уиерфх уиерфх уио хуиоерф хусерфх уи</p>
+          <p>{productData.description}</p>
         </div>
-        <div className="single-item-profile-items-container">
+        {productData.otherUserItems && productData.otherUserItems.length > 0 &&
+        (<div className="single-item-profile-items-container">
           <h3 className="single-item-profile-items-header">Обяви на потребителя</h3>
-          <Link to={''}>Виж всички</Link>
+          <Link to={''} className="single-item-view-more">Виж всички</Link>
           <ul className="single-item-profile-items">
-            <Item></Item>
-            <Item></Item>
+            {productData.otherUserItems?.map((i) => <Item key={i.id} image={i.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated}></Item>)}
           </ul>
-        </div>
+        </div>)
+        }
       </div>
 
-      <div className="single-item-similar-items-container">
+      {productData.similarItems && productData.similarItems.length > 0 &&
+      (<div className="single-item-similar-items-container">
         <h3 className="single-item-similar-items-header">Подобни обяви</h3>
         <ul className="single-item-similar-items">
           <Slider {...similarSettings}>
-            {productData.similarItems?.map((i) => <Item key={i.id} image={i.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated}></Item>)}
+            {productData?.similarItems?.map((i) => <Item key={i.id} image={i.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated}></Item>)}
           </Slider>
 
         </ul>
 
-      </div>
+      </div>)
+      }
 
     </div>
   );

@@ -33,6 +33,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 	email = models.EmailField(max_length=50, unique=True)
 	name = models.CharField(max_length=50, null=True, blank=True)
 	image = models.ImageField(upload_to='users/', null=True, blank=True)
+	created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
 	is_staff = models.BooleanField(default=False)
 	is_superuser = models.BooleanField(default=False)

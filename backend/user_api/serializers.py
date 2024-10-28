@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
+from django.utils import formats
 
 UserModel = get_user_model()
 
@@ -31,11 +32,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 class SingleUserSerializer(serializers.ModelSerializer):
 	#likes_count = serializers.IntegerField(source='likes_received.count', read_only=True)
+	created_at = serializers.SerializerMethodField()
 
 	class Meta:
 		model = UserModel
-		fields = ('user_id', 'email', 'image', 'name')
+		fields = ('user_id', 'email', 'image', 'name', 'created_at')
 
+	def get_created_at(self, obj):
+		return formats.date_format(obj.created_at, format="d E Y г.", use_l10n=True)
 
 # class SingleUserSerializer(serializers.ModelSerializer):
 # 	likes_count = serializers.IntegerField(source='likes_received.count', read_only=True)

@@ -49,15 +49,21 @@ class ProductRetrieveUpdateDestroyAPIView(APIView):
     def get(self, request, slug):
         product = get_object_or_404(Product, slug=slug)
         user = get_object_or_404(UserModel, user_id=product.user.user_id)
-        similar_products = Product.objects.filter(category=product.category).exclude(id=product.id)
+        similar_products = Product.objects.filter(category=product.category).exclude(user=user)
+        other_user_products = Product.objects.filter(user=user)
+
+        other_user_products = other_user_products.filter(subcategory=product.subcategory).exclude(id=product.id) or other_user_products.filter(category=product.category).exclude(id=product.id)
+
+        if other_user_products.count() > 2:
+            other_user_products = other_user_products[:2]
 
         product_serializer = ProductSerializer(product)
-        user_serializer = SingleUserSerializer(user)
         similar_products_serializer = ProductSerializer(similar_products, many=True)
+        other_user_products_serializer = ProductSerializer(other_user_products, many=True)
 
         response_data = product_serializer.data
-        response_data['user'] = user_serializer.data
         response_data['similarItems'] = similar_products_serializer.data
+        response_data['otherUserItems'] = other_user_products_serializer.data
         return Response(response_data, status=status.HTTP_200_OK)
 
     def put(self, request, slug):
