@@ -103,6 +103,8 @@ textarea {
     height: 100%;
     object-fit: cover;
     background-color: #D94A4A;
+
+    pointer-events: none;
   }
   
 .placeholder {
@@ -129,7 +131,7 @@ textarea {
     object-fit: cover;
   }
   
-.delete-btn {
+.delete-rotate-container {
     position: absolute;
     top: 0;
     background: none;
@@ -146,13 +148,15 @@ textarea {
     align-items: center;
     justify-content: center;
     opacity: 0;
+    box-sizing: border-box;
+    gap: 10px;
 }
 
-.delete-btn:hover{
+.delete-rotate-container:hover{
     opacity: 1;
 }
 
-.delete-btn-icon-container{
+.delete-btn-icon-container, .rotate-btn-icon-container{
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -161,4 +165,35 @@ textarea {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    transition-duration: .3s;
+}
+
+.delete-btn-icon-container:hover, .rotate-btn-icon-container:hover{
+  background-color: #aaa;
+}
+
+.main-image-text{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #D94A4A;
+  color: white;
+  padding: 5px 10px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.thumbnail {
+  transition: background-color 0.3s ease;
+}
+
+.thumbnail img {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.thumbnail.is-dragging {
+  opacity: 0;
+  background-color: rgba(217, 74, 74, 0.3);
 }
