@@ -14,6 +14,7 @@ import '/src/styles/home-section2.css'
 import '/src/styles/home-section3.css'
 import '/src/styles/home-section4.css'
 import '/src/styles/single-item-page.css'
+import '/src/styles/add-item.css'
 
 import { Route, Routes, Navigate } from 'react-router-dom'
 
@@ -29,6 +30,7 @@ import SingleItemPage from "./components/item/SingleItemPage.jsx";
 
 import { ClientContext, client } from './context/clientContext.js';
 import { useEffect, useState } from 'react';
+import ScrollToTop from "./components/scroll/ScrollToTop.jsx";
 
 function App() {
 
@@ -81,6 +83,7 @@ function App() {
 			<Route path="/c/:categoryName/:subcategoryName" element={<CategoryPage />} />
 		</Routes>
     	<Footer />
+		<ScrollToTop />
     </ClientContext.Provider>
   )
 }

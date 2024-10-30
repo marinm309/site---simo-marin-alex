@@ -1,0 +1,164 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: #b33a3a;
+  }
+  
+  .ad-form {
+    display: flex;
+    gap: 2rem;
+    width: 60%;
+  }
+  
+.form-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex: 1;
+  }
+  
+.form-right {
+    flex: 1;
+  }
+  
+.form-right h3 {
+    margin-bottom: 10px;
+  }
+  
+label {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+input[type="text"],
+select,
+textarea {
+    padding: 8px;
+    border: 1px solid #b33a3a;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  
+textarea {
+    resize: none;
+    height: 150px;
+  }
+  
+.image-upload {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+.upload-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #5b2d2d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+.submit-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+.thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+.thumbnail {
+    width: 185px;
+    height: 140px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: #D94A4A;
+    cursor: pointer;
+  }
+  
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #D94A4A;
+  }
+  
+.placeholder {
+    font-size: 32px;
+    color: #aaa;
+    text-align: center;
+  }
+  
+.main-image-upload {
+    width: 225px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background-color: #8C281F;
+  }
+  
+.main-image-upload img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+.delete-btn {
+    position: absolute;
+    top: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    transition-duration: .3s;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+.delete-btn:hover{
+    opacity: 1;
+}
+
+.delete-btn-icon-container{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

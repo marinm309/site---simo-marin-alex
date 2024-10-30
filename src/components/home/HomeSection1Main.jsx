@@ -42,7 +42,7 @@ function HomeSection1Main(){
             <div className="home-section-login-bottom">
                 <p className="home-section-login-bottom-header">Топ <span className="light-text">Обяви</span></p>
                 <ul>
-                    {items.map((i) => <Item key={i.id} title={i.title} price={i.price} image={i.image} address={i.address} last_updated={i.last_updated} slug={i.slug}></Item>)}
+                    {items.map((i) => <Item key={i.id} title={i.title} price={i.price} image={i.images[0]?.image || '/item-placeholder.png'} address={i.address} last_updated={i.last_updated} slug={i.slug}></Item>)}
                 </ul>
             </div>
         </section>

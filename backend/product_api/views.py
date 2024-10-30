@@ -5,7 +5,6 @@ from django.shortcuts import get_object_or_404
 from .models import Product, Favorite
 from .serializers import ProductSerializer, FavoriteSerializer
 from django.contrib.auth import get_user_model
-from user_api.serializers import SingleUserSerializer
 
 UserModel = get_user_model()
 
@@ -19,11 +18,14 @@ class ProductListCreateAPIView(APIView):
         total_results = request.query_params.get('total_results', None)
         search = request.query_params.get('search', None)
         subcategory = request.query_params.get('subcategory', None)
+
+        if request.FILES and len(request.FILES.getlist('images')) > 8:
+            return Response({"error": "You can upload up to 8 images."}, status=400)
+
         if category:
             products = Product.objects.filter(category__slug=category)
         elif subcategory:
-            pass
-            #products = Product.objects.filter(subcategory__slug=subcategory)
+            products = Product.objects.filter(subcategory__slug=subcategory)
         elif profile:
             products = Product.objects.filter(user__user_id=profile)
         elif total_results:
@@ -32,6 +34,7 @@ class ProductListCreateAPIView(APIView):
             products = Product.objects.filter(title__icontains=search)
         else:
             products = Product.objects.all()
+
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 

@@ -73,7 +73,7 @@ function CategoryPage(){
                     {/* {items.map((i) => <Item key={i.id} title={i.title} price={i.price} image={i.image} address={i.address} last_updated={i.last_updated}></Item>)} */}
                 </ul>
                 <ul>
-                    {items.map((i) => <Item key={i.id} image={i.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated}></Item>)}
+                    {items.map((i) => <Item key={i.id} image={i.images[0]?.image || '/item-placeholder.png'} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated}></Item>)}
                 </ul>
             </div>
         </section>

@@ -33,6 +33,7 @@ function SingleItemPage() {
   const slug = useParams()
   const profileInfo = useContext(ClientContext).profileInfo
   const [ showPhone, setShowPhone ] = useState(false)
+  const [ showReport, setShowReprot ] = useState(false)
 
   useEffect(() => {
     client.get(`/products/${slug.itemName}`)
@@ -54,10 +55,14 @@ function SingleItemPage() {
     setShowPhone(prev => !prev)
   }
 
+  function onReportClick(){
+    setShowReprot(prev => !prev)
+  }
+
   const mainSettings = {
     dots: true,
-    lazyLoad: true,
-    infinite: true,
+    lazyLoad: false,
+    infinite: false,
     speed: 0,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -81,15 +86,15 @@ function SingleItemPage() {
     customPaging: function(i) {
       return (
         <a>
-          <img src={`/image${i + 1}.jpg`} />
+          <img src={productData.images[i]?.image} />
         </a>
       );
     },
     initialSlide: index,
     dots: true,
-    lazyLoad: true,
+    lazyLoad: false,
     dotsClass: "slick-dots slick-thumb",
-    infinite: true,
+    infinite: false,
     waitForAnimate: true,
     speed: 0,
     slidesToShow: 1,
@@ -104,7 +109,7 @@ function SingleItemPage() {
 
   const similarSettings = {
     dots: false,
-    lazyLoad: true,
+    lazyLoad: false,
     infinite: false,
     speed: 0,
     slidesToShow: 5,
@@ -126,21 +131,11 @@ function SingleItemPage() {
         <div className="mainslider-container">
           <button onClick={toggleFullscreen} className="mainslider-fullscreen-btn"><i className="fa-solid fa-expand"></i></button>
           <Slider {...mainSettings} ref={sliderRef}>
-            <div>
-              <img src={productData.image} alt="Slide 1" />
-            </div>
-            <div>
-              <img src={"/image2.jpg"} alt="Slide 2" />
-            </div>
-            <div>
-              <img src={"/image3.jpg"} alt="Slide 3" />
-            </div>
-            <div>
-              <img src={"/image4.jpg"} alt="Slide 4" />
-            </div>
-            <div>
-              <img src={"/image6.jpg"} alt="Slide 4" />
-            </div>
+            {productData.images?.map((i) => 
+            <div key={i.id}>
+              <img src={i.image} />
+            </div>)
+            }
           </Slider>
         </div>
 
@@ -149,21 +144,11 @@ function SingleItemPage() {
             <div className="thumbnail-slider">
               <button onClick={toggleFullscreen} className="thumbnail-fullscreen-btn"><i className="fa-solid fa-x"></i></button>
               <Slider {...thumbSettings} ref={thumbnailSliderRef}>
-                <div>
-                  <img src="/image1.jpg" alt="Thumb 1" />
-                </div>
-                <div>
-                  <img src="/image2.jpg" alt="Thumb 2" />
-                </div>
-                <div>
-                  <img src="/image3.jpg" alt="Thumb 3" />
-                </div>
-                <div>
-                  <img src="/image4.jpg" alt="Thumb 4" />
-                </div>
-                <div>
-                  <img src={"/image6.jpg"} alt="Slide 4" />
-                </div>
+                {productData.images?.map((i) => 
+                <div key={i.id}>
+                  <img src={i.image} />
+                </div>)
+                }
               </Slider>
             </div>
           </div>
@@ -219,8 +204,11 @@ function SingleItemPage() {
             <li>Категория дълга асд дас са</li>
           </ul>
         </div>
-        <div>
+        <div className="single-item-report-container">
           <button className="single-item-report-btn"><i className="fa-solid fa-circle-exclamation"></i>Докладвай</button>
+          <div className="single-item-report-box-container">
+            
+          </div>
         </div>
       </div>
 
@@ -234,7 +222,7 @@ function SingleItemPage() {
           <h3 className="single-item-profile-items-header">Обяви на потребителя</h3>
           <Link to={''} className="single-item-view-more">Виж всички</Link>
           <ul className="single-item-profile-items">
-            {productData.otherUserItems?.map((i) => <Item key={i.id} image={i.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated}></Item>)}
+            {productData.otherUserItems?.map((i) => <Item key={i.id} image={i.images[0]?.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated}></Item>)}
           </ul>
         </div>)
         }
@@ -245,7 +233,7 @@ function SingleItemPage() {
         <h3 className="single-item-similar-items-header">Подобни обяви</h3>
         <ul className="single-item-similar-items">
           <Slider {...similarSettings}>
-            {productData?.similarItems?.map((i) => <Item key={i.id} image={i.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated}></Item>)}
+            {productData?.similarItems?.map((i) => <Item key={i.id} image={i.images[0]?.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated}></Item>)}
           </Slider>
 
         </ul>

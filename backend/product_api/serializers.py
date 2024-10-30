@@ -1,8 +1,13 @@
 from rest_framework import serializers
-from .models import Product, Favorite
+from .models import Product, Favorite, ProductImage, CarProduct, ClotheProduct
 from django.utils import formats
 from category_api.serializers import CategorySerializer, SingleCategorySerializer
 from user_api.serializers import SingleUserSerializer
+
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ['id', 'image']
 
 class ProductSerializer(serializers.ModelSerializer):
     created_at = serializers.SerializerMethodField()
@@ -10,6 +15,7 @@ class ProductSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
     subcategory = SingleCategorySerializer()
     user = SingleUserSerializer()
+    images = ProductImageSerializer(many=True)
     
     class Meta:
         model = Product
@@ -20,6 +26,16 @@ class ProductSerializer(serializers.ModelSerializer):
     
     def get_last_updated(self, obj):
         return formats.date_format(obj.last_updated, format="d E Y г.", use_l10n=True)
+    
+class CarProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CarProduct
+        fields = '__all__'
+
+class CarProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClotheProduct
+        fields = '__all__'
 
 class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:

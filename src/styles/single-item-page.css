@@ -109,7 +109,7 @@
 }
 
 .thumbnail-slider .slick-dots{
-  bottom: -150px;
+  bottom: auto;
 }
 
 .thumbnail-slider .slick-dots li{
@@ -378,4 +378,12 @@
 
 .single-item-similar-items-container{
   width: 100%;
+}
+
+.single-item-report-container{
+  position: relative;
+}
+
+.single-item-report-box-container{
+  position: absolute;
 }
