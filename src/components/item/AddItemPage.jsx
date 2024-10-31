@@ -102,7 +102,6 @@ function AddItemPage() {
         while (compactedImages.length < MAX_IMAGES) {
             compactedImages.push(null);
         }
-
         setImages(compactedImages);
     };
 
@@ -187,7 +186,7 @@ function DraggableImage({ image, index, isMainImage, moveImage, rotateImage, rem
     const [, drop] = useDrop({
         accept: "image",
         hover(item) {
-            if (item.index !== index) {
+            if (image && (item.index !== index)) {
                 moveImage(item.index, index);
                 item.index = index;
             }
@@ -208,7 +207,7 @@ function DraggableImage({ image, index, isMainImage, moveImage, rotateImage, rem
                 <>
                     <img src={image.url} alt={isMainImage ? "Main Uploaded" : `Uploaded ${index}`} />
                     {isMainImage && <p className="main-image-text">КОРИЦА</p>}
-                    <div className={`delete-rotate-container ${isDragging ? 'delete-btn-dragged' : ''}`} style={{display: isDragging ? 'none' : ''}}>
+                    <div className={`delete-rotate-container`} style={{display: isDragging ? 'none' : ''}}>
                         <button className="rotate-btn-icon-container" onClick={(e) => rotateImage(e, index)}>
                             <i className="fa-solid fa-rotate"></i>
                         </button>
