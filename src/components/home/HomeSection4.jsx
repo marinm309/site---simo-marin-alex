@@ -1,3 +1,4 @@
+import '/src/styles/home-section4.css'
 import React from 'react';
 import Slider from 'react-slick';
 

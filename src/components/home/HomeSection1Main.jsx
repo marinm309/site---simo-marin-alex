@@ -1,9 +1,8 @@
+import '/src/styles/home-section-login.css'
 import Item from "../item/Item"
 import Category from "../category/Category"
 import Search from "../search/Search"
-
 import { useContext, useState, useEffect } from "react"
-
 import { ClientContext } from "../../context/clientContext"
 
 function HomeSection1Main(){

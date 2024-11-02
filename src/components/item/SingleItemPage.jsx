@@ -1,3 +1,4 @@
+import '/src/styles/single-item-page.css'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -123,7 +124,7 @@ function SingleItemPage() {
     <div className="single-item-container">
 
       <div className="single-item-top-links-container">
-        <p><Link to={'/'}>Главна страница</Link> / <Link to={`/c/${productData.category?.slug}`}>име на категория</Link> / <Link to={productData.subcategory?.slug}>подкатегория</Link> / име на обява</p>
+        <p><Link to={'/'}>Главна страница</Link> / <Link to={`/c/${productData.category?.slug}`}>{productData.category.name}</Link> / <Link to={productData.subcategory?.slug}>{productData.subcategory.name}</Link> / {productData.title}</p>
       </div>
 
       <div className="slider-container">

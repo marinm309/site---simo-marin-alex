@@ -1,3 +1,4 @@
+import '/src/styles/login-register.css'
 import { Link } from "react-router-dom"
 import { useContext, useState } from "react"
 import { ClientContext } from '../../context/clientContext.js'

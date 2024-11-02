@@ -1,3 +1,4 @@
+import '/src/styles/home-section1.css'
 import { Link } from "react-router-dom"
 
 function HomeSection1(){

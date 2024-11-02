@@ -1,3 +1,4 @@
+import '/src/styles/categories.css'
 import { Link } from "react-router-dom"
 
 function Category(props){

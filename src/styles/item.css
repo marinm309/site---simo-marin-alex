@@ -1,4 +1,4 @@
-.categories-section-bottom .promo-items .single-item-name-price p{
+.categories-section-bottom .promo-items .single-item-top-price{
     font-size: 16px;
   }
   
@@ -8,13 +8,15 @@
 
 .single-item{
     width: 300px;
-    height: 240px;
+    height: 360px;
     text-align: left;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-weight: 500;
     flex-direction: column;
+    background-color: white;
+    border-radius: 6px;
   }
   
 .single-item a{
@@ -28,6 +30,8 @@
   }
   
 .single-item img{
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     object-fit: cover;
     height: 100%;
     width: 100%;
@@ -48,11 +52,13 @@
     border-radius: 50%;
   }
   
-.single-item-name-price{
+.single-item-name-heart{
     display: flex;
     align-items: start;
     justify-content: space-between;
     color: #8C281F;
+    box-sizing: border-box;
+    padding: 0px 20px;
   }
   
 .single-item h3{
@@ -61,7 +67,7 @@
     margin-bottom: 5px;
     font-weight: 500;
     line-height: 1.2em;
-    height: 2.4em;
+    max-height: 2.4em;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -70,18 +76,21 @@
     width: 100%;
   }
 
-.single-item p{
+.single-item .single-item-date-address p{
     margin: 0;
     font-size: 13px;
   }
 
-.single-item-name-price p{
-    font-size: 16px;
-    margin-left: 2px;
-  }
+.single-item-top-price{
+  margin: 0;
+  color: #8C281F;
+  padding: 0 20px;
+}
 
 .single-item-date-address {
   width: 100%;
+  padding: 10px 20px;
+  box-sizing: border-box;
 }
 
 .single-item-date-address p{

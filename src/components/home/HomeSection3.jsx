@@ -1,3 +1,5 @@
+import '/src/styles/home-section3.css'
+
 function HomeSection3(){
     return(
         <section className="home-section3">

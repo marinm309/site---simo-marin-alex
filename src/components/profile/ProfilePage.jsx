@@ -1,3 +1,5 @@
+import '/src/styles/profile.css'
+
 function ProfilePage(){
     return(
         <div className="profile-container">

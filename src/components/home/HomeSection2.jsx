@@ -1,3 +1,5 @@
+import '/src/styles/home-section2.css'
+
 function HomeSection2(){
     return(
         <section className="home-section2 section">

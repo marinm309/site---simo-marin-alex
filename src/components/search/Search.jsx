@@ -1,3 +1,5 @@
+import '/src/styles/search.css'
+
 function Search(){
     return(
         <div className="search-container">
