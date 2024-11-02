@@ -17,7 +17,10 @@ function AddItemPage() {
     const [data, setData] = useState({
         title: "",
         description: "",
-        price: "",
+        price: 0,
+        price_other: "",
+        currency: "leva",
+        item_type: "o",
         address: "",
         category: 0,
         subcategory: 0,
@@ -111,28 +114,38 @@ function AddItemPage() {
         for (let key in data) {
             formData.append(key, data[key]);
         }
-        images.forEach((image, index) => formData.append(`image_${index}`, image.file));
-
+        images.forEach((image) => formData.append('images', image.file));
         client
             .post("/products/", formData, {
                 headers: { "X-CSRFToken": csrfToken },
             })
             .then(() => navigate("/profile"))
-            .catch(() => setErr(true));
+            .catch((err) => {
+                setErr(true)
+            });
     };
 
     return (
         <DndProvider backend={HTML5Backend}>
             <div className="form-container">
                 <form className="ad-form" onSubmit={handleSubmit}>
-                    <div className="form-left">
-                        <label>Заглавие <input type="text" placeholder="име на обява" /></label>
-                        <label>Категория <select><option value="">категория</option></select></label>
-                        <label>Описание <textarea placeholder="описание"></textarea></label>
-                        <label>Местоположение <select><option value="">град</option></select></label>
-                    </div>
+                    <div className="main-fields">
+                        <label name="title">Заглавие
+                            <input type="text" placeholder="Име на обява" name="title" onChange={handleChange} value={data.title} />
+                        </label>
+                        <label name="category">Категория
+                            <select name="category" onChange={handleChange} value={data.category}>
+                                <option disabled value={0}>Изберете категория</option>
+                                {categories.map((o) => <option key={o.id} value={o.id}>{o.name}</option>)}
+                            </select>
+                        </label>
+                        <label name="subcategory">Подкатегория
+                            <select name="subcategory" onChange={handleChange} value={data.subcategory}>
+                                <option disabled value={0}>Изберете подкатегория</option>
+                                {subcategories.map((o) => <option key={o.id} value={o.id}>{o.name}</option>)}
+                            </select>
+                        </label>
 
-                    <div className="form-right">
                         <h3>Снимки и Клипoве</h3>
                         <DraggableImage
                             image={images[0]}
@@ -164,7 +177,35 @@ function AddItemPage() {
                                 />
                             ))}
                         </div>
-                        <label>Търсиш или Предлагаш <select><option value="">Търся</option></select></label>
+                        <label name="item_type">Търсиш или Предлагаш 
+                            <select name="item_type" onChange={handleChange} value={data.item_type}>
+                                <option value="o">Преглагам</option>
+                                <option value="s">Търся</option>
+                            </select>
+                        </label>
+                        <label name="description">Описание
+                            <textarea placeholder="Описание" name="description" onChange={handleChange} value={data.description}></textarea>
+                        </label>
+                        <div className="price-container">
+                            <label name="price">Цена
+                                <input type="number" placeholder="" name="price" onChange={handleChange} value={data.price} />
+                            </label>
+                            <label name="currency">Валута 
+                            <select name="currency" onChange={handleChange} value={data.currency}>
+                                <option value="leva">лв.</option>
+                                <option value="euro">€</option>
+                                <option value="dollar">$</option>
+                            </select>
+                        </label>
+                        </div>
+                        <label name="address">Локация
+                            {/* <select name="address" onChange={handleChange} value={data.address}>
+                                <option value="">Град/Пощенски код</option>
+                            </select> */}
+                            <label name="address">Цена
+                                <input type="text" placeholder="" name="address" onChange={handleChange} value={data.address} />
+                            </label>
+                        </label>
                     </div>
                 </form>
                 <button className="submit-btn" onClick={handleSubmit}>Създай Обява</button>
@@ -199,7 +240,7 @@ function DraggableImage({ image, index, isMainImage, moveImage, rotateImage, rem
             className={isMainImage ? "main-image-upload" : "thumbnail"}
             style={{
                 opacity: isDragging ? 0.3 : 1,
-                backgroundColor: image ? "transparent" : "#D94A4A",
+                backgroundColor: image ? "transparent" : `${isMainImage ? '#8C281F' : '#D94A4A'})`,
             }}
             onClick={() => document.getElementById("file-input").click()}
         >
@@ -217,7 +258,7 @@ function DraggableImage({ image, index, isMainImage, moveImage, rotateImage, rem
                     </div>
                 </>
             ) : (
-                <div className="placeholder">{isMainImage ? "Главна Снимка" : "+"}</div>
+                <div className="placeholder">{isMainImage ? "Корица" : "+"}</div>
             )}
         </div>
     );

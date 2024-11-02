@@ -29,24 +29,19 @@ function Header(){
     }
 
     return(
-        <div>
+        <div className="nav">
             <nav className="navigation-container">
 
                 <div className="logo-container"><Link to={'/'}><img src="/logo.png" /></Link></div>
 
                 <ul className="nav-items-container">
-                    <li><Link to={'/'}>Home</Link></li>
-                    <li><Link to={'/'}>Home</Link></li>
-                    <li><Link to={'/'}>Home</Link></li>
-                    {/* <li className="profile-btn-container">
-                        <button className="profile-btn" onClick={onProfileClick}><img src={profileInfo && profileInfo.data.user.image ? profileInfo.data.user.image : 'profile_pic_default.png'} id="pfp-img" /></button>
-                        {showProfileDropdown && <ProfileDropdown onProfileClick={onProfileClick} showProfileDropdown={showProfileDropdown} />}
-                    </li> */}
+                    <li><Link to={profileInfo ? '/add-item' : '#'} className="new-btn" onClick={profileInfo ? '' : onLoginClick}><b>Добави обява</b></Link></li>
+                    <li><Link to={'/'}><i className="fa-regular fa-message"></i> Чатове</Link></li>
+                    <li><Link to={'/'}><i className="fa-regular fa-heart"></i></Link></li>
                     <li className="profile-btn-container">
                         <button id="pfp-btn" className="login-register-btn" onClick={profileInfo ? onProfileClick : onLoginClick}><i className="fa-solid fa-user"></i> Моят профил</button>
                         {showProfileDropdown && <ProfileDropdown onProfileClick={onProfileClick} showProfileDropdown={showProfileDropdown} />}
-                        </li>
-                    <li><Link to={profileInfo ? '/add-item' : '#'} className="new-btn" onClick={profileInfo ? '' : onLoginClick}><b>Добави обява</b></Link></li>
+                    </li>
                 </ul>
                 
             </nav>

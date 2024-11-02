@@ -5,7 +5,7 @@
 .categories-section-top{
     margin: 0 auto;
     text-align: center;
-    background-color: #D94A4A;
+    background-color: #8C8C87;
     padding-top: 30px;
     padding-bottom: 30px;
   }
@@ -94,3 +94,7 @@
     color: white;
     background-color: black;
   }
+
+.category-white-btn{
+  color: #D94A4A;
+}

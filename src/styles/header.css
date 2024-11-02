@@ -2,11 +2,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #999999;
-    background: rgb(234,234,234);
-    background: #f2f2f2;
-    padding: 15px 90px;
+    padding: 15px 0px;
+    width: 70%;
+    margin: 0 auto;
   }
+
+.nav{
+  width: 100%;
+  border-bottom: 1px solid #999999;
+  background: #f2f2f2;
+}
 
 .logo-container img{
     object-fit: cover;
@@ -16,6 +21,7 @@
 
 .nav-items-container a{
     color: #D94A4A;
+    font-size: 16px;
   }
 
 .nav-items-container{
@@ -30,15 +36,6 @@
     position: relative;
   }
 
-.profile-btn{
-    border: none;
-    outline: none;
-    width: 50px;
-    height: 50px;
-    padding: 0;
-    border-radius: 50%;
-  }
-
 .nav-items-container .login-register-btn{
     border: none;
     font-size: 16px;
@@ -49,7 +46,7 @@
     gap: 8px;
   }
 
-.nav-items-container .login-register-btn i{
+.nav-items-container i{
     font-size: 22px;
   }
 

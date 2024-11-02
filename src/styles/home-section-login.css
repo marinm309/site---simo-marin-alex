@@ -1,4 +1,6 @@
 .home-section-login-categories{
+  width: 70%;
+  margin: 0 auto;
   margin-top: 30px;
 }
 
@@ -11,14 +13,12 @@
   }
   
 .home-section-login-categories ul{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(77px, calc(20% - 36px)));
-    gap: 36px;
-    justify-items: center;
+    display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    padding: 0 30%;
+    gap: 36px;
+    flex-wrap: wrap;
   }
   
 .home-section-login-categories li{
@@ -73,7 +73,7 @@
 .home-section-login-top{
     margin: 0 auto;
     text-align: center;
-    background-color: #D94A4A;
+    background-color: #8C8C87;
     padding-top: 30px;
     padding-bottom: 30px;
   }

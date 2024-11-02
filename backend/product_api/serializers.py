@@ -27,6 +27,11 @@ class ProductSerializer(serializers.ModelSerializer):
     def get_last_updated(self, obj):
         return formats.date_format(obj.last_updated, format="d E Y г.", use_l10n=True)
     
+class ProductCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
+    
 class CarProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarProduct

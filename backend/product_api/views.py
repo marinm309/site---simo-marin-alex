@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from django.shortcuts import get_object_or_404
-from .models import Product, Favorite
-from .serializers import ProductSerializer, FavoriteSerializer
+from .models import Product, Favorite, ProductImage
+from .serializers import ProductSerializer, FavoriteSerializer, ProductCreateSerializer
 from django.contrib.auth import get_user_model
 
 UserModel = get_user_model()
@@ -39,9 +39,12 @@ class ProductListCreateAPIView(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = ProductSerializer(data=request.data)
+        serializer = ProductCreateSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            product = serializer.save()
+            images = request.FILES.getlist('images')
+            for image in images:
+                ProductImage.objects.create(image=image, product=product)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

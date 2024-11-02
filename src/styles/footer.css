@@ -1,11 +1,11 @@
 footer{
-    border-top: 1px solid #8C281F;
     color: #8C281F;
-    margin-top: 100px;
     display: flex;
     justify-content: space-between;
     align-content: center;
-    padding: 20px 90px;
+    padding: 20px 0px;
+    width: 70%;
+    margin: 0 auto;
 }
 
 footer a{
@@ -33,4 +33,10 @@ footer a{
     justify-content: center;
     font-size: 36px;
     gap: 30px;
+}
+
+.footer{
+    margin-top: 100px;
+    width: 100%;
+    border-top: 1px solid #8C281F;
 }
