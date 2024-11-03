@@ -113,7 +113,7 @@ function SingleItemPage() {
     lazyLoad: false,
     infinite: false,
     speed: 0,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 1,
     waitForAnimate: true,
     nextArrow: <NextArrow extraClass={' similar-arrows'} />,
@@ -124,9 +124,9 @@ function SingleItemPage() {
     <div className="single-item-container">
 
       <div className="single-item-top-links-container">
-        <p><Link to={'/'}>Главна страница</Link> / <Link to={`/c/${productData.category?.slug}`}>{productData.category.name}</Link> / <Link to={productData.subcategory?.slug}>{productData.subcategory.name}</Link> / {productData.title}</p>
+        <p><Link to={'/'}>Главна страница</Link> / <Link to={`/c/${productData.category?.slug}`}>{productData.category?.name}</Link> / <Link to={productData.subcategory?.slug}>{productData.subcategory?.name}</Link> / {productData.title}</p>
       </div>
-
+    
       <div className="slider-container">
 
         <div className="mainslider-container">
@@ -159,7 +159,7 @@ function SingleItemPage() {
           <p className="single-item-added">Последно обновена на {productData.last_updated}</p>
           <h1 className="single-item-name">{productData.title}</h1>
           <hr></hr>
-          <h2 className="single-item-price">{productData.price} лв</h2>
+          <h2 className="single-item-price"><b>{productData.price} лв</b></h2>
           <p className="single-item-city">{productData.address}</p>
           <div className="single-item-main-info-profile-container">
             <div className="single-item-main-info-profile-image-container">

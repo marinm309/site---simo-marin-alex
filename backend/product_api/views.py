@@ -95,7 +95,6 @@ class ProductRetrieveUpdateDestroyAPIView(APIView):
 
 class FavoriteAPIView(APIView):
 
-
     def get(self, request, slug):
         favorite = get_object_or_404(Favorite, slug=slug)
         serializer = FavoriteSerializer(favorite)

@@ -187,6 +187,10 @@
   margin: 0;
 }
 
+.single-item-main-info hr{
+  width: 100%;
+}
+
 .single-item-name{
   font-size: 32px;
   font-weight: 300;
@@ -314,6 +318,9 @@
 .single-item-description-container{
   width: 750px;
   color: #8C281F;
+  background-color: white;
+  padding: 10px 20px;
+  box-sizing: border-box;
 }
 
 .single-item-description-container h3{
@@ -354,10 +361,6 @@
   align-self: flex-end;
 }
 
-.single-item-profile-items li{
-  width: 230px;
-}
-
 .similar-arrows{
   background-color: black;
   color: white;
@@ -369,12 +372,7 @@
 
 .single-item-similar-items li{
   width: auto;
-  padding: 0 10px;
-  box-sizing: border-box;
-}
-
-.single-item-similar-items{
-  width: 1230px;
+  margin: 0 15px;
 }
 
 .single-item-similar-items-container{

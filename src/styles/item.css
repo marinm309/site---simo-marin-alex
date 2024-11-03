@@ -54,12 +54,22 @@
   
 .single-item-name-heart{
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: space-between;
     color: #8C281F;
     box-sizing: border-box;
     padding: 0px 20px;
   }
+
+.single-item-name-heart i {
+    transition: color 0.3s ease, transform 0.3s ease;
+    color: #8C281F;
+}
+
+.single-item-name-heart i.fa-solid {
+    color: #D94A4A;
+    transform: scale(1.2);
+}
   
 .single-item h3{
     margin: 0;

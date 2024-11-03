@@ -1,7 +1,16 @@
+import { useState } from 'react'
 import '/src/styles/item.css'
 import { Link } from "react-router-dom"
 
 function Item(props){
+
+    const [isLiked, setIsLiked] = useState(false)
+
+    function toggleLike(e){
+        e.preventDefault()
+        e.stopPropagation()
+        setIsLiked(prev => !prev)
+    }
 
     return(
         <li className="single-item">
@@ -11,7 +20,10 @@ function Item(props){
 
                     <div className="single-item-name-heart">
                         <h3>{props.title}</h3>
-                        <i className="fa-regular fa-heart"></i>
+                        <i
+                            className={`fa-heart ${isLiked ? 'fa-solid' : 'fa-regular'}`}
+                            onClick={toggleLike}
+                        ></i>
                     </div>
                     <p className="single-item-top-price"><b>{props.price}лв</b></p>
                 </div>
