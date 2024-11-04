@@ -16,6 +16,7 @@ class ProductListCreateAPIView(APIView):
         total_results = request.query_params.get('total_results', None)
         search = request.query_params.get('search', None)
         subcategory = request.query_params.get('subcategory', None)
+        favorite = request.query_params.get('favorite', None)
 
         if request.FILES and len(request.FILES.getlist('images')) > 8:
             return Response({"error": "You can upload up to 8 images."}, status=400)
@@ -30,6 +31,8 @@ class ProductListCreateAPIView(APIView):
             products = Product.objects.all()[Product.objects.count() - int(total_results):]
         elif search:
             products = Product.objects.filter(title__icontains=search)
+        elif favorite == 'items':
+            products = Product.objects.filter(favorite__user=request.user).order_by('-favorite__created_at')
         else:
             products = Product.objects.all()
 
@@ -98,10 +101,17 @@ class ProductRetrieveUpdateDestroyAPIView(APIView):
         product = get_object_or_404(Product, slug=slug)
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class AllFavoriteUserAPIView(APIView):
+    def get(self, request):
+        products = Product.objects.filter(favorite__user=request.user)
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data)
 
 class FavoriteAPIView(APIView):
-    # def get(self, request):
-    #     favorites = Favorite.objects.all()   
+    # def get(self, request, slug):
+    #     print('here')
+    #     favorites = Favorite.objects.filter(user=request.user)   
     #     serializer = FavoriteSerializer(favorites, many=True)
     #     return Response(serializer.data)
 

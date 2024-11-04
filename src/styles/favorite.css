@@ -1,0 +1,40 @@
+.favorite-page-container{
+    width: 100%;
+    background-color: white;
+}
+
+.favorite-page-container > div{
+    width: 70%;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.favorite-page-top-header{
+    font-size: 36px;
+    color: #8C281F;
+    font-weight: 600;
+    margin-bottom: 100px;
+    margin-top: 0;
+}
+
+.favorite-page-top-btn{
+    border: none;
+    font-size: 16px;
+    color: rgba(140, 40, 31, 0.7);
+    width: 200px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    transition-duration: .3s;
+    border-bottom: 2px solid transparent;
+    background-color: transparent;
+}
+
+.favorite-page-top-btn-active{
+    border-bottom: 2px solid #8C281F;
+    color: rgba(140, 40, 31, 1);
+    font-weight: bold;
+}
+
+.favorite-page-top-btn-not-active:hover{
+    border-bottom: 2px solid rgba(140, 40, 31, 0.3);
+}

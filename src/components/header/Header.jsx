@@ -38,7 +38,7 @@ function Header(){
                 <ul className="nav-items-container">
                     <li><Link to={profileInfo ? '/add-item' : '#'} className="new-btn" onClick={profileInfo ? '' : onLoginClick}><b>Добави обява</b></Link></li>
                     <li><Link to={'/'}><i className="fa-regular fa-message"></i> Чатове</Link></li>
-                    <li><Link to={'/'}><i className="fa-regular fa-heart"></i></Link></li>
+                    <li><Link to={'/favorite'}><i className="fa-regular fa-heart"></i></Link></li>
                     <li className="profile-btn-container">
                         <button id="pfp-btn" className="login-register-btn" onClick={profileInfo ? onProfileClick : onLoginClick}><i className="fa-solid fa-user"></i> Моят профил</button>
                         {showProfileDropdown && <ProfileDropdown onProfileClick={onProfileClick} showProfileDropdown={showProfileDropdown} />}
