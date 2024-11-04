@@ -6,6 +6,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Item from "./Item";
 import { ClientContext } from "../../context/clientContext"
+import Cookies from "js-cookie";
 
 function NextArrow(props) {
   return (
@@ -35,18 +36,19 @@ function SingleItemPage() {
   const profileInfo = useContext(ClientContext).profileInfo
   const [ showPhone, setShowPhone ] = useState(false)
   const [ showReport, setShowReprot ] = useState(false)
+  const csrfToken = Cookies.get("csrftoken")
+  const [ isLiked, setIsLiked ] = useState(null)
 
   useEffect(() => {
     client.get(`/products/${slug.itemName}`)
     .then(function(res){
         setProductData(res.data)
+        setIsLiked(res.data.favorite)
     })
     .catch(function(error){
         navigate('/')
     })
   }, [slug])
-
-  console.log(productData)
 
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen)
@@ -59,6 +61,31 @@ function SingleItemPage() {
   function onReportClick(){
     setShowReprot(prev => !prev)
   }
+
+  function toggleLike(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (isLiked) {
+        client.delete(`products/favorite/${productData.slug}`,
+            {
+                headers: { "X-CSRFToken": csrfToken }
+            })
+            .then(() => setIsLiked(false))
+            .catch((err) => console.error('Failed to unlike', err));
+    } else {
+        client.post(`products/favorite/${productData.slug}`,
+            {
+            product: productData.id,
+            user: profileInfo.data.user.user_id,
+        },
+        {
+            headers: { "X-CSRFToken": csrfToken }
+        })
+        .then(() => setIsLiked(true))
+        .catch((err) => console.error('Failed to like', err));
+    }
+}
 
   const mainSettings = {
     dots: true,
@@ -82,7 +109,7 @@ function SingleItemPage() {
       setIndex(newIndex)
     }
   }
-
+  console.log(productData)
   const thumbSettings = {
     customPaging: function(i) {
       return (
@@ -156,7 +183,7 @@ function SingleItemPage() {
         )}
 
         <div className="single-item-main-info">
-          <p className="single-item-added">Последно обновена на {productData.last_updated}</p>
+          <p className="single-item-added">Последно обновена на {productData.last_updated} <i className={`fa-heart ${isLiked ? 'fa-solid' : 'fa-regular'}`} onClick={toggleLike}></i></p>
           <h1 className="single-item-name">{productData.title}</h1>
           <hr></hr>
           <h2 className="single-item-price"><b>{productData.price} лв</b></h2>
@@ -223,7 +250,7 @@ function SingleItemPage() {
           <h3 className="single-item-profile-items-header">Обяви на потребителя</h3>
           <Link to={''} className="single-item-view-more">Виж всички</Link>
           <ul className="single-item-profile-items">
-            {productData.otherUserItems?.map((i) => <Item key={i.id} image={i.images[0]?.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated}></Item>)}
+            {productData.otherUserItems?.map((i) => <Item key={i.id} image={i.images[0]?.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated} favorite={i.favorite} id={i.id}></Item>)}
           </ul>
         </div>)
         }
@@ -234,7 +261,7 @@ function SingleItemPage() {
         <h3 className="single-item-similar-items-header">Подобни обяви</h3>
         <ul className="single-item-similar-items">
           <Slider {...similarSettings}>
-            {productData?.similarItems?.map((i) => <Item key={i.id} image={i.images[0]?.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated}></Item>)}
+            {productData?.similarItems?.map((i) => <Item key={i.id} image={i.images[0]?.image} slug={i.slug} title={i.title} price={i.price} address={i.address} last_updated={i.last_updated} favorite={i.favorite} id={i.id}></Item>)}
           </Slider>
 
         </ul>

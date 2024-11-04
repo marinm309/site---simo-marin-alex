@@ -5,13 +5,11 @@ from django.shortcuts import get_object_or_404
 from .models import Product, Favorite, ProductImage
 from .serializers import ProductSerializer, FavoriteSerializer, ProductCreateSerializer
 from django.contrib.auth import get_user_model
+from rest_framework.authentication import SessionAuthentication
 
 UserModel = get_user_model()
 
 class ProductListCreateAPIView(APIView):
-    permission_classes = (permissions.AllowAny,)
-    authentication_classes = ()
-
     def get(self, request):
         category = request.query_params.get('category', None)
         profile = request.query_params.get('profile', None)
@@ -35,7 +33,11 @@ class ProductListCreateAPIView(APIView):
         else:
             products = Product.objects.all()
 
-        serializer = ProductSerializer(products, many=True)
+        user_favorites = {}
+        if request.user.is_authenticated:
+            favorite_product_ids = Favorite.objects.filter(user=request.user).values_list('product_id', flat=True)
+            user_favorites = {product_id: True for product_id in favorite_product_ids}
+        serializer = ProductSerializer(products, many=True, context={'user_favorites': user_favorites})
         return Response(serializer.data)
 
     def post(self, request):
@@ -63,9 +65,13 @@ class ProductRetrieveUpdateDestroyAPIView(APIView):
         if other_user_products.count() > 2:
             other_user_products = other_user_products[:2]
 
-        product_serializer = ProductSerializer(product)
-        similar_products_serializer = ProductSerializer(similar_products, many=True)
-        other_user_products_serializer = ProductSerializer(other_user_products, many=True)
+        user_favorites = {}
+        favorite_product_ids = Favorite.objects.filter(user=user).values_list('product_id', flat=True)
+        user_favorites = {product_id: True for product_id in favorite_product_ids}
+
+        product_serializer = ProductSerializer(product, context={'user_favorites': user_favorites})
+        similar_products_serializer = ProductSerializer(similar_products, many=True, context={'user_favorites': user_favorites})
+        other_user_products_serializer = ProductSerializer(other_user_products, many=True, context={'user_favorites': user_favorites})
 
         response_data = product_serializer.data
         response_data['similarItems'] = similar_products_serializer.data
@@ -94,22 +100,24 @@ class ProductRetrieveUpdateDestroyAPIView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class FavoriteAPIView(APIView):
-
-    def get(self, request, slug):
-        favorite = get_object_or_404(Favorite, slug=slug)
-        serializer = FavoriteSerializer(favorite)
-        return Response(serializer.data)
+    # def get(self, request):
+    #     favorites = Favorite.objects.all()   
+    #     serializer = FavoriteSerializer(favorites, many=True)
+    #     return Response(serializer.data)
 
     def post(self, request, slug):
-        product = get_object_or_404(Product, slug=slug)
-        favorite, created = Favorite.objects.get_or_create(user=request.user, product=product)
-
-        if not created:
-            return Response({"detail": "You have already put that in favorite."}, status=status.HTTP_400_BAD_REQUEST)
-
-        return Response({"detail": "You put that in favorite."}, status=status.HTTP_201_CREATED)
+        serializer = FavoriteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"details": "Created"}, status=status.HTTP_201_CREATED)
+        return Response({"detail": "You have already put that in favorite."}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, slug):
         product = get_object_or_404(Product, slug=slug)
-        Favorite.objects.filter(user=request.user, product=product).delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        favorite = Favorite.objects.filter(user=request.user, product=product).first()
+        
+        if favorite:
+            favorite.delete()
+            return Response({"detail": "Successfully removed from favorites."}, status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response({"detail": "Favorite item not found."}, status=status.HTTP_404_NOT_FOUND)

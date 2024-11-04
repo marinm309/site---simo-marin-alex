@@ -76,7 +76,7 @@ class ClotheProduct(Product):
         return self.brand
 
 class Favorite(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True, related_name='favorite')
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):

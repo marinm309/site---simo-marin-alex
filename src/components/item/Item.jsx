@@ -1,15 +1,39 @@
-import { useState } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import '/src/styles/item.css'
 import { Link } from "react-router-dom"
+import { ClientContext } from "../../context/clientContext"
+import Cookies from "js-cookie";
 
 function Item(props){
 
-    const [isLiked, setIsLiked] = useState(false)
+    const [ isLiked, setIsLiked ] = useState(props.favorite)
+    const profileInfo = useContext(ClientContext).profileInfo;
+    const client = useContext(ClientContext).client
+    const csrfToken = Cookies.get("csrftoken")
 
-    function toggleLike(e){
-        e.preventDefault()
-        e.stopPropagation()
-        setIsLiked(prev => !prev)
+    function toggleLike(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    
+        if (isLiked) {
+            client.delete(`products/favorite/${props.slug}`,
+                {
+                    headers: { "X-CSRFToken": csrfToken }
+                })
+                .then(() => setIsLiked(false))
+                .catch((err) => console.error('Failed to unlike', err));
+        } else {
+            client.post(`products/favorite/${props.slug}`,
+                {
+                product: props.id,
+                user: profileInfo.data.user.user_id,
+            },
+            {
+                headers: { "X-CSRFToken": csrfToken }
+            })
+            .then(() => setIsLiked(true))
+            .catch((err) => console.error('Failed to like', err));
+        }
     }
 
     return(

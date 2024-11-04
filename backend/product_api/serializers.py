@@ -9,6 +9,11 @@ class ProductImageSerializer(serializers.ModelSerializer):
         model = ProductImage
         fields = ['id', 'image']
 
+class FavoriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favorite
+        fields = '__all__'
+
 class ProductSerializer(serializers.ModelSerializer):
     created_at = serializers.SerializerMethodField()
     last_updated = serializers.SerializerMethodField()
@@ -16,6 +21,7 @@ class ProductSerializer(serializers.ModelSerializer):
     subcategory = SingleCategorySerializer()
     user = SingleUserSerializer()
     images = ProductImageSerializer(many=True)
+    favorite = serializers.SerializerMethodField()
     
     class Meta:
         model = Product
@@ -26,6 +32,10 @@ class ProductSerializer(serializers.ModelSerializer):
     
     def get_last_updated(self, obj):
         return formats.date_format(obj.last_updated, format="d E Y г.", use_l10n=True)
+    
+    def get_favorite(self, obj):
+        user_favorites = self.context.get('user_favorites', {})
+        return user_favorites.get(obj.id, False)
     
 class ProductCreateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,9 +50,4 @@ class CarProductSerializer(serializers.ModelSerializer):
 class CarProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClotheProduct
-        fields = '__all__'
-
-class FavoriteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Favorite
         fields = '__all__'
