@@ -1,12 +1,15 @@
 .favorite-page-container{
     width: 100%;
+}
+
+.favorite-page-container > div:first-of-type{
     background-color: white;
 }
 
-.favorite-page-container > div{
+.favorite-page-top{
     width: 70%;
     margin: 0 auto;
-    padding: 30px 0;
+    padding-top: 30px;
 }
 
 .favorite-page-top-header{
@@ -37,4 +40,32 @@
 
 .favorite-page-top-btn-not-active:hover{
     border-bottom: 2px solid rgba(140, 40, 31, 0.3);
+}
+
+.favorite-items{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.favorite-items-no-items{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+    margin-bottom: 300px;
+}
+
+.favorite-items-no-items p{
+    font-size: 24px;
+    margin: 0;
+    color: #D94A4A;
+}
+
+.favorite-items-no-items-header{
+    font-weight: 600;
 }

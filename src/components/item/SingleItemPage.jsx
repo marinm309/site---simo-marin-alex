@@ -38,6 +38,7 @@ function SingleItemPage() {
   const [ showReport, setShowReprot ] = useState(false)
   const csrfToken = Cookies.get("csrftoken")
   const [ isLiked, setIsLiked ] = useState(null)
+  const { triggerLikeBubble } = useContext(ClientContext)
 
   useEffect(() => {
     client.get(`/products/${slug.itemName}`)
@@ -71,7 +72,10 @@ function SingleItemPage() {
             {
                 headers: { "X-CSRFToken": csrfToken }
             })
-            .then(() => setIsLiked(false))
+            .then(() => {
+              setIsLiked(false)
+              triggerLikeBubble('removed', 'Премахнато от любими');
+            })
             .catch((err) => console.error('Failed to unlike', err));
     } else {
         client.post(`products/favorite/${productData.slug}`,
@@ -82,7 +86,10 @@ function SingleItemPage() {
         {
             headers: { "X-CSRFToken": csrfToken }
         })
-        .then(() => setIsLiked(true))
+        .then(() => {
+          setIsLiked(true)
+          triggerLikeBubble('added', 'Добавено в любими');
+        })
         .catch((err) => console.error('Failed to like', err));
     }
 }

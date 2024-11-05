@@ -56,7 +56,7 @@
     color: white;
     font-size: 16px;
     background-color: transparent;
-    background-color: black;
+    background-color: #D94A4A;
     transition-duration: .2s;
     box-sizing: border-box;
     border: 1px solid transparent;
@@ -66,4 +66,12 @@
   background-color: white;
   color: #D94A4A;
   border: 1px solid #D94A4A;
+}
+
+.nav-items-container .hover-brightness b{
+  transition-duration: .3s;
+}
+
+.nav-items-container .hover-brightness:hover b{
+  filter: brightness(1.5);
 }

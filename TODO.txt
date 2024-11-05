@@ -1,0 +1,14 @@
+1) responsive za telefon
+2) chat stranica, chat bubble, chat backend
+3) favorite searches, history
+4) profile, store
+5) pod kategorii i poletata im za suzdavane na obqva
+6) tursachka, glavni filtra, filtra za pod kategorii
+7) narajdane na sekciite i slagane na linkove vuv footera
+8) validacii i error handling
+9) suobshteniq s greshkite na poletata
+10) report
+11) opcii za obnovqvane na obqva, za trieneto i
+12) nastroiki na profila
+13) da se dobavi preglejdaniq na obqva
+final) ot do testvane na saita s cel da se hvane neshto
